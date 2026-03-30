@@ -4,9 +4,8 @@ Powerful Raspberry Pi CM5-based IoT gateway with 4G (Quectel EC25-E), LoRa (LR62
 <img width="1340" height="827" alt="CM5 Base Board V2" src="https://github.com/user-attachments/assets/004c41dd-b800-45b3-9cf7-db68eaf7eb6c" />
 <img width="1024" height="994" alt="CM5 Base Board V2" src="https://github.com/user-attachments/assets/a4fee5ae-d5a8-421f-a334-58e36e0e691e" />
 
-<img width="447" height="500" alt="CM5 Base Board V2" src="https://github.com/user-attachments/assets/004c41dd-b800-45b3-9cf7-db68eaf7eb6c" />
-<img width="447" height="500" alt="CM5 Base Board V2" src="https://github.com/user-attachments/assets/004c41dd-b800-45b3-9cf7-db68eaf7eb6c" />
-
+<img width="447" height="500" alt="CM5 Base Board V2" src="https://github.com/user-attachments/assets/c09b169a-82b6-477b-bffa-3d320f86ab8d" />
+<img width="447" height="500" alt="CM5 Base Board V2" src="https://github.com/user-attachments/assets/3c0f746d-53c6-4f91-bf9e-5a5010d36583" />
 
 ## Buy the CM5 Gateway
 - Store: [HBQ Technology Store](https://store.hbqsolution.com/)
