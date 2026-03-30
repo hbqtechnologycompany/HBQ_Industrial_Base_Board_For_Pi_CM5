@@ -1,10 +1,12 @@
 # CM5 Gateway
 Powerful Raspberry Pi CM5-based IoT gateway with 4G (Quectel EC25-E), LoRa (LR62E), and Zigbee (Silicon Labs MGM12/21) options. This repo contains hardware references and software examples to control cellular, LoRa, and Zigbee modules on the CM5 gateway.
 
-![CM5 GW Board](https://github.com/user-attachments/assets/f39ed236-cc76-4349-a9a6-8ff790176205)
+<img width="1340" height="827" alt="CM5 Base Board V2" src="https://github.com/user-attachments/assets/004c41dd-b800-45b3-9cf7-db68eaf7eb6c" />
+<img width="1024" height="994" alt="CM5 Base Board V2" src="https://github.com/user-attachments/assets/a4fee5ae-d5a8-421f-a334-58e36e0e691e" />
 
+<img width="447" height="500" alt="CM5 Base Board V2" src="https://github.com/user-attachments/assets/004c41dd-b800-45b3-9cf7-db68eaf7eb6c" />
+<img width="447" height="500" alt="CM5 Base Board V2" src="https://github.com/user-attachments/assets/004c41dd-b800-45b3-9cf7-db68eaf7eb6c" />
 
-<img width="1148" height="877" alt="CM5 Gateway" src="https://github.com/user-attachments/assets/fb9592cd-a99d-4837-85b5-ca0146104505" />
 
 ## Buy the CM5 Gateway
 - Store: [HBQ Technology Store](https://store.hbqsolution.com/)
