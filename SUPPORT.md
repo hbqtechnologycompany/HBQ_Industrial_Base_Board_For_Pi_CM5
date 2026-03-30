@@ -5,7 +5,6 @@
 - Shipping: Domestic and international options available
 - Warranty/returns: See store policies
 
-When ordering, mention “CM5 Gateway” and desired modules (EC25-E 4G, LR62E LoRa, Zigbee MGM12/21).
 
 ### Technical Support
 - Email: contact@hbqsolution.com, hbqsolution@gmail.com
