@@ -8,1121 +8,937 @@
 <link href="https://fonts.googleapis.com/css2?family=Rajdhani:wght@400;500;600;700&family=Space+Mono:wght@400;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <style>
 :root {
-  --bg: #050c14;
-  --bg2: #080f1a;
-  --surface: #0d1b2a;
-  --surface2: #112236;
-  --border: #1a3050;
-  --accent: #00d4ff;
-  --accent2: #00ff9d;
-  --accent3: #ff6b35;
-  --warn: #ffd700;
-  --text: #e2eaf4;
-  --text-muted: #7a9ab8;
-  --text-dim: #3d5a78;
-  --glow: 0 0 20px rgba(0,212,255,0.3);
-  --glow2: 0 0 20px rgba(0,255,157,0.3);
+  --bg:#050c14;--bg2:#080f1a;--surface:#0d1b2a;--surface2:#112236;
+  --border:#1a3050;--accent:#00d4ff;--accent2:#00ff9d;--accent3:#ff6b35;
+  --warn:#ffd700;--text:#e2eaf4;--text-muted:#7a9ab8;--text-dim:#3d5a78;
 }
-* { margin:0; padding:0; box-sizing:border-box; }
-html { scroll-behavior: smooth; }
-body {
-  background: var(--bg);
-  color: var(--text);
-  font-family: 'Inter', sans-serif;
-  overflow-x: hidden;
-}
+*{margin:0;padding:0;box-sizing:border-box;}
+html{scroll-behavior:smooth;}
+body{background:var(--bg);color:var(--text);font-family:'Inter',sans-serif;overflow-x:hidden;}
 
-/* NAV */
-nav {
-  position: fixed; top:0; left:0; right:0; z-index:100;
-  background: rgba(5,12,20,0.92);
-  backdrop-filter: blur(16px);
-  border-bottom: 1px solid var(--border);
-  display: flex; align-items: center; justify-content: space-between;
-  padding: 0 40px; height: 64px;
+/* ── NAV ── */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:200;
+  background:rgba(5,12,20,0.95);backdrop-filter:blur(16px);
+  border-bottom:1px solid var(--border);
+  display:flex;align-items:center;justify-content:space-between;
+  padding:0 40px;height:64px;gap:16px;
 }
-.nav-logo {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 22px; font-weight: 700;
-  color: var(--accent);
-  letter-spacing: 2px;
-  display: flex; align-items: center; gap: 10px;
-}
-.nav-logo span { color: var(--text); }
-.nav-links { display: flex; gap: 32px; }
-.nav-links a {
-  color: var(--text-muted); text-decoration: none;
-  font-size: 13px; font-weight: 500; letter-spacing: 1px;
-  text-transform: uppercase;
-  transition: color .2s;
-}
-.nav-links a:hover { color: var(--accent); }
-.nav-cta {
-  background: var(--accent); color: #000;
-  border: none; padding: 10px 24px;
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 14px; font-weight: 700;
-  letter-spacing: 1px; text-transform: uppercase;
-  cursor: pointer; clip-path: polygon(8px 0, 100% 0, calc(100% - 8px) 100%, 0 100%);
-  text-decoration: none;
-}
-.nav-cta:hover { background: #00efff; }
+.nav-logo{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;color:var(--accent);letter-spacing:2px;display:flex;align-items:center;gap:10px;white-space:nowrap;}
+.nav-logo span{color:var(--text);}
+.nav-links{display:flex;gap:28px;flex:1;justify-content:center;}
+.nav-links a{color:var(--text-muted);text-decoration:none;font-size:12px;font-weight:500;letter-spacing:1px;text-transform:uppercase;transition:color .2s;white-space:nowrap;}
+.nav-links a:hover{color:var(--accent);}
+.nav-right{display:flex;align-items:center;gap:12px;}
 
-/* HERO */
-.hero {
-  min-height: 100vh;
-  display: flex; align-items: center;
-  padding: 80px 40px 40px;
-  position: relative;
-  overflow: hidden;
-}
-.hero-grid-bg {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(0,212,255,0.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,212,255,0.04) 1px, transparent 1px);
-  background-size: 60px 60px;
-  pointer-events: none;
-}
-.hero-glow {
-  position: absolute; top: 20%; left: 10%;
-  width: 600px; height: 600px;
-  background: radial-gradient(circle, rgba(0,212,255,0.08) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-glow2 {
-  position: absolute; top: 40%; right: 5%;
-  width: 400px; height: 400px;
-  background: radial-gradient(circle, rgba(0,255,157,0.06) 0%, transparent 70%);
-  pointer-events: none;
-}
-.hero-inner {
-  max-width: 1300px; margin: 0 auto; width: 100%;
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 60px; align-items: center;
-  position: relative; z-index:1;
-}
-.hero-badge {
-  display: inline-flex; align-items: center; gap: 8px;
-  background: rgba(0,212,255,0.1);
-  border: 1px solid rgba(0,212,255,0.3);
-  padding: 6px 16px;
-  font-family: 'Space Mono', monospace;
-  font-size: 11px; color: var(--accent);
-  letter-spacing: 2px; text-transform: uppercase;
-  margin-bottom: 24px;
-  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-}
-.hero-badge::before {
-  content:''; width:6px; height:6px; background: var(--accent);
-  border-radius: 50%; animation: pulse 1.5s infinite;
-}
-@keyframes pulse { 0%,100%{opacity:1;transform:scale(1)} 50%{opacity:0.5;transform:scale(1.4)} }
-h1 {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 58px; font-weight: 700;
-  line-height: 1.05;
-  margin-bottom: 20px;
-  letter-spacing: -0.5px;
-}
-h1 .line1 { color: var(--text); display: block; }
-h1 .line2 {
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-  background-clip: text; display: block;
-}
-.hero-desc {
-  color: var(--text-muted); font-size: 16px; line-height: 1.7;
-  margin-bottom: 36px; max-width: 500px;
-}
-.hero-actions { display: flex; gap: 16px; flex-wrap: wrap; margin-bottom: 48px; }
-.btn-primary {
-  background: var(--accent); color: #000;
-  padding: 14px 32px; font-family: 'Rajdhani', sans-serif;
-  font-size: 15px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  text-decoration: none; display: inline-block;
-  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-  transition: background .2s, transform .1s;
-}
-.btn-primary:hover { background: #00efff; transform: translateY(-1px); }
-.btn-secondary {
-  background: transparent; color: var(--text);
-  padding: 13px 32px; font-family: 'Rajdhani', sans-serif;
-  font-size: 15px; font-weight: 700; letter-spacing: 1px; text-transform: uppercase;
-  text-decoration: none; display: inline-block;
-  border: 1px solid var(--border);
-  clip-path: polygon(10px 0, 100% 0, calc(100% - 10px) 100%, 0 100%);
-  transition: border-color .2s, color .2s;
-}
-.btn-secondary:hover { border-color: var(--accent); color: var(--accent); }
-.hero-stats {
-  display: flex; gap: 32px; flex-wrap: wrap;
-}
-.stat {
-  display: flex; flex-direction: column; gap: 4px;
-}
-.stat-num {
-  font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 700;
-  color: var(--accent); line-height: 1;
-}
-.stat-label {
-  font-size: 11px; color: var(--text-muted); letter-spacing: 1px; text-transform: uppercase;
-}
-.hero-visual {
-  position: relative; display: flex; justify-content: center; align-items: center;
-}
-.board-frame {
-  position: relative; width: 500px; height: 500px;
-}
-.board-img {
-  width: 100%; height: 100%; object-fit: contain;
-  filter: drop-shadow(0 0 40px rgba(0,212,255,0.25));
-  animation: float 6s ease-in-out infinite;
-}
-@keyframes float {
-  0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)}
-}
-.board-corner {
-  position: absolute; width: 20px; height: 20px;
-  border-color: var(--accent); border-style: solid;
-}
-.board-corner.tl { top: 0; left: 0; border-width: 2px 0 0 2px; }
-.board-corner.tr { top: 0; right: 0; border-width: 2px 2px 0 0; }
-.board-corner.bl { bottom: 0; left: 0; border-width: 0 0 2px 2px; }
-.board-corner.br { bottom: 0; right: 0; border-width: 0 2px 2px 0; }
-.scan-line {
-  position: absolute; left: 10px; right: 10px; height: 2px;
-  background: linear-gradient(90deg, transparent, var(--accent), transparent);
-  opacity: 0.5;
-  animation: scan 3s linear infinite;
-}
-@keyframes scan { 0%{top:10px;opacity:0.6} 100%{top:490px;opacity:0} }
+/* Language switcher */
+.lang-switcher{display:flex;align-items:center;gap:0;border:1px solid var(--border);overflow:hidden;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);}
+.lang-btn{background:transparent;color:var(--text-muted);border:none;padding:7px 14px;font-family:'Space Mono',monospace;font-size:11px;font-weight:700;letter-spacing:1px;cursor:pointer;transition:background .15s,color .15s;display:flex;align-items:center;gap:5px;}
+.lang-btn:first-child{border-right:1px solid var(--border);}
+.lang-btn.active{background:var(--accent);color:#000;}
+.lang-btn:hover:not(.active){background:rgba(0,212,255,0.1);color:var(--accent);}
+.flag{font-size:13px;}
 
-/* SECTION COMMON */
-section { padding: 100px 40px; }
-.section-inner { max-width: 1300px; margin: 0 auto; }
-.section-label {
-  font-family: 'Space Mono', monospace;
-  font-size: 11px; color: var(--accent);
-  letter-spacing: 3px; text-transform: uppercase;
-  margin-bottom: 12px;
-}
-.section-title {
-  font-family: 'Rajdhani', sans-serif;
-  font-size: 44px; font-weight: 700;
-  line-height: 1.1; margin-bottom: 16px;
-}
-.section-sub {
-  color: var(--text-muted); font-size: 16px; max-width: 600px; line-height: 1.7;
-}
-.divider {
-  border: none; height: 1px;
-  background: linear-gradient(90deg, transparent, var(--border), transparent);
-  margin: 0;
-}
+.nav-cta{background:var(--accent);color:#000;border:none;padding:10px 20px;font-family:'Rajdhani',sans-serif;font-size:13px;font-weight:700;letter-spacing:1px;text-transform:uppercase;cursor:pointer;clip-path:polygon(8px 0,100% 0,calc(100% - 8px) 100%,0 100%);text-decoration:none;white-space:nowrap;transition:background .2s;}
+.nav-cta:hover{background:#00efff;}
 
-/* VS SECTION */
-.vs-section { background: var(--bg2); }
-.vs-grid {
-  display: grid; grid-template-columns: 1fr auto 1fr; gap: 0;
-  margin-top: 60px; border: 1px solid var(--border);
-}
-.vs-col {
-  padding: 40px;
-}
-.vs-col.ours {
-  background: linear-gradient(135deg, rgba(0,212,255,0.06), rgba(0,255,157,0.04));
-  border-right: 1px solid var(--border);
-  position: relative;
-}
-.vs-col.ours::before {
-  content: 'OUR PRODUCT'; position: absolute; top: 0; left: 50%; transform: translateX(-50%);
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  color: #000; font-family: 'Rajdhani',sans-serif; font-weight:700;
-  font-size: 12px; letter-spacing: 2px; padding: 4px 20px;
-  clip-path: polygon(6px 0, 100% 0, calc(100% - 6px) 100%, 0 100%);
-}
-.vs-col.theirs { border-left: 1px solid var(--border); opacity: 0.7; }
-.vs-divider-col {
-  display: flex; align-items: center; justify-content: center;
-  background: var(--surface); border-left: 1px solid var(--border); border-right: 1px solid var(--border);
-  padding: 0 20px;
-  writing-mode: vertical-rl;
-  font-family: 'Rajdhani', sans-serif; font-size: 24px; font-weight: 700;
-  color: var(--text-dim); letter-spacing: 4px;
-}
-.vs-brand {
-  font-family: 'Rajdhani', sans-serif; font-size: 22px; font-weight: 700;
-  margin-bottom: 8px; margin-top: 20px;
-}
-.vs-brand.ours-brand { color: var(--accent); }
-.vs-brand.theirs-brand { color: var(--text-muted); }
-.vs-item {
-  display: flex; align-items: flex-start; gap: 12px;
-  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-}
-.vs-item:last-child { border-bottom: none; }
-.vs-icon { font-size: 18px; flex-shrink: 0; margin-top: 2px; }
-.vs-item-text { font-size: 14px; line-height: 1.5; }
-.vs-item-text strong { color: var(--text); font-weight: 600; display: block; }
-.vs-item-text span { color: var(--text-muted); font-size: 12px; }
+/* ── HERO ── */
+.hero{min-height:100vh;display:flex;align-items:center;padding:80px 40px 40px;position:relative;overflow:hidden;}
+.hero-grid-bg{position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.04) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.04) 1px,transparent 1px);background-size:60px 60px;pointer-events:none;}
+.hero-glow{position:absolute;top:20%;left:10%;width:600px;height:600px;background:radial-gradient(circle,rgba(0,212,255,0.08) 0%,transparent 70%);pointer-events:none;}
+.hero-glow2{position:absolute;top:40%;right:5%;width:400px;height:400px;background:radial-gradient(circle,rgba(0,255,157,0.06) 0%,transparent 70%);pointer-events:none;}
+.hero-inner{max-width:1300px;margin:0 auto;width:100%;display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center;position:relative;z-index:1;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.3);padding:6px 16px;font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;text-transform:uppercase;margin-bottom:24px;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);}
+.hero-badge::before{content:'';width:6px;height:6px;background:var(--accent);border-radius:50%;animation:pulse 1.5s infinite;}
+@keyframes pulse{0%,100%{opacity:1;transform:scale(1)}50%{opacity:0.5;transform:scale(1.4)}}
+h1{font-family:'Rajdhani',sans-serif;font-size:58px;font-weight:700;line-height:1.05;margin-bottom:20px;letter-spacing:-0.5px;}
+h1 .line1{color:var(--text);display:block;}
+h1 .line2{background:linear-gradient(90deg,var(--accent),var(--accent2));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;display:block;}
+.hero-desc{color:var(--text-muted);font-size:16px;line-height:1.7;margin-bottom:36px;max-width:500px;}
+.hero-actions{display:flex;gap:16px;flex-wrap:wrap;margin-bottom:48px;}
+.btn-primary{background:var(--accent);color:#000;padding:14px 32px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;display:inline-block;clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:background .2s,transform .1s;}
+.btn-primary:hover{background:#00efff;transform:translateY(-1px);}
+.btn-secondary{background:transparent;color:var(--text);padding:13px 32px;font-family:'Rajdhani',sans-serif;font-size:15px;font-weight:700;letter-spacing:1px;text-transform:uppercase;text-decoration:none;display:inline-block;border:1px solid var(--border);clip-path:polygon(10px 0,100% 0,calc(100% - 10px) 100%,0 100%);transition:border-color .2s,color .2s;}
+.btn-secondary:hover{border-color:var(--accent);color:var(--accent);}
+.hero-stats{display:flex;gap:32px;flex-wrap:wrap;}
+.stat{display:flex;flex-direction:column;gap:4px;}
+.stat-num{font-family:'Rajdhani',sans-serif;font-size:32px;font-weight:700;color:var(--accent);line-height:1;}
+.stat-label{font-size:11px;color:var(--text-muted);letter-spacing:1px;text-transform:uppercase;}
+.hero-visual{position:relative;display:flex;justify-content:center;align-items:center;}
+.board-frame{position:relative;width:500px;height:500px;}
+.board-img{width:100%;height:100%;object-fit:contain;filter:drop-shadow(0 0 40px rgba(0,212,255,0.25));animation:float 6s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0)}50%{transform:translateY(-12px)}}
+.board-corner{position:absolute;width:20px;height:20px;border-color:var(--accent);border-style:solid;}
+.board-corner.tl{top:0;left:0;border-width:2px 0 0 2px;}
+.board-corner.tr{top:0;right:0;border-width:2px 2px 0 0;}
+.board-corner.bl{bottom:0;left:0;border-width:0 0 2px 2px;}
+.board-corner.br{bottom:0;right:0;border-width:0 2px 2px 0;}
+.scan-line{position:absolute;left:10px;right:10px;height:2px;background:linear-gradient(90deg,transparent,var(--accent),transparent);opacity:0.5;animation:scan 3s linear infinite;}
+@keyframes scan{0%{top:10px;opacity:0.6}100%{top:490px;opacity:0}}
 
-/* FEATURES GRID */
-.features-grid {
-  display: grid; grid-template-columns: repeat(3, 1fr); gap: 1px;
-  background: var(--border); margin-top: 60px;
-  border: 1px solid var(--border);
-}
-.feat-card {
-  background: var(--bg); padding: 36px 30px;
-  position: relative; overflow: hidden;
-  transition: background .2s;
-}
-.feat-card:hover { background: var(--surface); }
-.feat-card::before {
-  content:''; position:absolute; top:0; left:0; right:0; height: 3px;
-  background: linear-gradient(90deg, var(--accent), var(--accent2));
-  opacity: 0; transition: opacity .2s;
-}
-.feat-card:hover::before { opacity: 1; }
-.feat-icon {
-  width: 48px; height: 48px; margin-bottom: 20px;
-  display: flex; align-items: center; justify-content: center;
-  font-size: 28px;
-  background: rgba(0,212,255,0.08);
-  border: 1px solid rgba(0,212,255,0.2);
-}
-.feat-title {
-  font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700;
-  margin-bottom: 10px; color: var(--text);
-}
-.feat-desc { font-size: 14px; color: var(--text-muted); line-height: 1.65; }
-.feat-tag {
-  display: inline-block; margin-top: 14px;
-  background: rgba(0,212,255,0.1); border: 1px solid rgba(0,212,255,0.25);
-  color: var(--accent); font-family: 'Space Mono', monospace;
-  font-size: 10px; padding: 3px 10px; letter-spacing: 1px;
-}
+/* ── SECTION ── */
+section{padding:100px 40px;}
+.section-inner{max-width:1300px;margin:0 auto;}
+.section-label{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:3px;text-transform:uppercase;margin-bottom:12px;}
+.section-title{font-family:'Rajdhani',sans-serif;font-size:44px;font-weight:700;line-height:1.1;margin-bottom:16px;}
+.section-sub{color:var(--text-muted);font-size:16px;max-width:600px;line-height:1.7;}
+.divider{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border),transparent);margin:0;}
 
-/* SPECS TABLE */
-.specs-section { background: var(--bg2); }
-.specs-wrap { margin-top: 60px; display: grid; grid-template-columns: 1fr 1fr; gap: 40px; }
-.spec-group { }
-.spec-group-title {
-  font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700;
-  color: var(--accent); letter-spacing: 1px; text-transform: uppercase;
-  padding-bottom: 12px; border-bottom: 1px solid rgba(0,212,255,0.2);
-  margin-bottom: 0;
-  display: flex; align-items: center; gap: 10px;
-}
-.spec-group-title::before {
-  content:''; width: 4px; height: 18px; background: var(--accent);
-}
-.spec-row {
-  display: flex; justify-content: space-between; align-items: flex-start;
-  padding: 12px 0; border-bottom: 1px solid rgba(255,255,255,0.04);
-  gap: 16px;
-}
-.spec-key { font-size: 13px; color: var(--text-muted); flex-shrink: 0; min-width: 140px; }
-.spec-val { font-size: 13px; color: var(--text); text-align: right; font-weight: 500; }
-.spec-val .highlight { color: var(--accent2); font-weight: 600; }
+/* ── VS ── */
+.vs-section{background:var(--bg2);}
+.vs-grid{display:grid;grid-template-columns:1fr auto 1fr;gap:0;margin-top:60px;border:1px solid var(--border);}
+.vs-col{padding:40px;}
+.vs-col.ours{background:linear-gradient(135deg,rgba(0,212,255,0.06),rgba(0,255,157,0.04));border-right:1px solid var(--border);position:relative;}
+.vs-col.ours::before{content:'OUR PRODUCT';position:absolute;top:0;left:50%;transform:translateX(-50%);background:linear-gradient(90deg,var(--accent),var(--accent2));color:#000;font-family:'Rajdhani',sans-serif;font-weight:700;font-size:12px;letter-spacing:2px;padding:4px 20px;clip-path:polygon(6px 0,100% 0,calc(100% - 6px) 100%,0 100%);}
+.vs-col.theirs{border-left:1px solid var(--border);opacity:0.7;}
+.vs-divider-col{display:flex;align-items:center;justify-content:center;background:var(--surface);border-left:1px solid var(--border);border-right:1px solid var(--border);padding:0 20px;writing-mode:vertical-rl;font-family:'Rajdhani',sans-serif;font-size:24px;font-weight:700;color:var(--text-dim);letter-spacing:4px;}
+.vs-brand{font-family:'Rajdhani',sans-serif;font-size:22px;font-weight:700;margin-bottom:8px;margin-top:20px;}
+.vs-brand.ours-brand{color:var(--accent);}
+.vs-brand.theirs-brand{color:var(--text-muted);}
+.vs-item{display:flex;align-items:flex-start;gap:12px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);}
+.vs-item:last-child{border-bottom:none;}
+.vs-icon{font-size:18px;flex-shrink:0;margin-top:2px;}
+.vs-item-text{font-size:14px;line-height:1.5;}
+.vs-item-text strong{color:var(--text);font-weight:600;display:block;}
+.vs-item-text span{color:var(--text-muted);font-size:12px;}
 
-/* MODULES */
-.modules-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 24px; margin-top: 60px; }
-.module-card {
-  background: var(--surface); border: 1px solid var(--border);
-  overflow: hidden; transition: border-color .2s, transform .2s;
-  cursor: pointer;
-}
-.module-card:hover { border-color: var(--accent); transform: translateY(-4px); }
-.module-img {
-  width: 100%; aspect-ratio: 1; object-fit: cover;
-  filter: saturate(0.8);
-  transition: filter .3s;
-}
-.module-card:hover .module-img { filter: saturate(1); }
-.module-info { padding: 20px; }
-.module-name {
-  font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700;
-  margin-bottom: 6px;
-}
-.module-chip {
-  font-family: 'Space Mono', monospace; font-size: 10px;
-  color: var(--accent); letter-spacing: 1px;
-  margin-bottom: 8px; display: block;
-}
-.module-desc { font-size: 12px; color: var(--text-muted); line-height: 1.5; }
+/* ── FEATURES ── */
+.features-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--border);margin-top:60px;border:1px solid var(--border);}
+.feat-card{background:var(--bg);padding:36px 30px;position:relative;overflow:hidden;transition:background .2s;}
+.feat-card:hover{background:var(--surface);}
+.feat-card::before{content:'';position:absolute;top:0;left:0;right:0;height:3px;background:linear-gradient(90deg,var(--accent),var(--accent2));opacity:0;transition:opacity .2s;}
+.feat-card:hover::before{opacity:1;}
+.feat-icon{width:48px;height:48px;margin-bottom:20px;display:flex;align-items:center;justify-content:center;font-size:28px;background:rgba(0,212,255,0.08);border:1px solid rgba(0,212,255,0.2);}
+.feat-title{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;margin-bottom:10px;color:var(--text);}
+.feat-desc{font-size:14px;color:var(--text-muted);line-height:1.65;}
+.feat-tag{display:inline-block;margin-top:14px;background:rgba(0,212,255,0.1);border:1px solid rgba(0,212,255,0.25);color:var(--accent);font-family:'Space Mono',monospace;font-size:10px;padding:3px 10px;letter-spacing:1px;}
 
-/* BLOCK DIAGRAM */
-.diagram-section { background: var(--bg2); }
-.diagram-wrap {
-  margin-top: 60px;
-  border: 1px solid var(--border);
-  background: var(--surface);
-  padding: 40px;
-  position: relative;
-  overflow: hidden;
-}
-.diagram-wrap::before {
-  content:''; position:absolute; inset:0;
-  background-image: linear-gradient(rgba(0,212,255,0.02) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(0,212,255,0.02) 1px, transparent 1px);
-  background-size: 30px 30px;
-  pointer-events: none;
-}
-.diagram-img { width: 100%; max-width: 700px; display: block; margin: 0 auto; position: relative; z-index:1; }
+/* ── SPECS ── */
+.specs-section{background:var(--bg2);}
+.specs-wrap{margin-top:60px;display:grid;grid-template-columns:1fr 1fr;gap:40px;}
+.spec-group-title{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--accent);letter-spacing:1px;text-transform:uppercase;padding-bottom:12px;border-bottom:1px solid rgba(0,212,255,0.2);margin-bottom:0;display:flex;align-items:center;gap:10px;}
+.spec-group-title::before{content:'';width:4px;height:18px;background:var(--accent);}
+.spec-row{display:flex;justify-content:space-between;align-items:flex-start;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.04);gap:16px;}
+.spec-key{font-size:13px;color:var(--text-muted);flex-shrink:0;min-width:140px;}
+.spec-val{font-size:13px;color:var(--text);text-align:right;font-weight:500;}
+.spec-val .hl{color:var(--accent2);font-weight:600;}
 
-/* WIKI */
-.wiki-section { }
-.wiki-grid { display: grid; grid-template-columns: 280px 1fr; gap: 0; margin-top: 60px; border: 1px solid var(--border); min-height: 600px; }
-.wiki-nav { background: var(--surface); border-right: 1px solid var(--border); padding: 24px 0; }
-.wiki-nav-title {
-  font-family: 'Space Mono', monospace; font-size: 10px;
-  color: var(--text-dim); letter-spacing: 2px; padding: 0 24px 12px;
-  text-transform: uppercase; border-bottom: 1px solid var(--border);
-  margin-bottom: 8px;
-}
-.wiki-link {
-  display: flex; align-items: center; gap: 10px;
-  padding: 10px 24px; font-size: 13px; color: var(--text-muted);
-  cursor: pointer; transition: background .15s, color .15s;
-  border-left: 3px solid transparent;
-}
-.wiki-link:hover { background: rgba(0,212,255,0.05); color: var(--text); }
-.wiki-link.active { background: rgba(0,212,255,0.08); color: var(--accent); border-left-color: var(--accent); }
-.wiki-link .dot {
-  width: 6px; height: 6px; border-radius: 50%;
-  background: currentColor; flex-shrink: 0;
-}
-.wiki-content { padding: 40px; }
-.wiki-page { display: none; }
-.wiki-page.active { display: block; }
-.wiki-page-title {
-  font-family: 'Rajdhani', sans-serif; font-size: 32px; font-weight: 700;
-  margin-bottom: 8px; color: var(--text);
-}
-.wiki-page-sub { color: var(--text-muted); font-size: 14px; margin-bottom: 32px; padding-bottom: 20px; border-bottom: 1px solid var(--border); }
-.wiki-h2 {
-  font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700;
-  color: var(--accent); margin: 28px 0 12px;
-  display: flex; align-items: center; gap: 8px;
-}
-.wiki-h2::before { content:''; width:3px; height:20px; background: var(--accent); }
-.wiki-p { font-size: 14px; color: var(--text-muted); line-height: 1.75; margin-bottom: 14px; }
-.code-block {
-  background: #020a12; border: 1px solid var(--border);
-  border-left: 3px solid var(--accent);
-  padding: 16px 20px; font-family: 'Space Mono', monospace;
-  font-size: 12px; color: #7dd3fc; margin: 16px 0;
-  overflow-x: auto; line-height: 1.8;
-}
-.code-block .comment { color: var(--text-dim); }
-.code-block .cmd { color: var(--accent2); }
-.code-block .str { color: #fbbf24; }
-.note-box {
-  background: rgba(255,215,0,0.06); border: 1px solid rgba(255,215,0,0.2);
-  border-left: 3px solid var(--warn); padding: 16px 20px; margin: 16px 0;
-  font-size: 13px; color: var(--text-muted); line-height: 1.6;
-}
-.note-box strong { color: var(--warn); }
-.success-box {
-  background: rgba(0,255,157,0.05); border: 1px solid rgba(0,255,157,0.2);
-  border-left: 3px solid var(--accent2); padding: 16px 20px; margin: 16px 0;
-  font-size: 13px; color: var(--text-muted); line-height: 1.6;
-}
-.success-box strong { color: var(--accent2); }
-.pin-table { width: 100%; border-collapse: collapse; margin: 16px 0; font-size: 13px; }
-.pin-table th {
-  background: var(--surface2); color: var(--text-muted);
-  padding: 10px 14px; text-align: left; font-weight: 600;
-  border-bottom: 1px solid var(--border);
-  font-family: 'Rajdhani', sans-serif; font-size: 14px; letter-spacing: 0.5px;
-}
-.pin-table td { padding: 10px 14px; border-bottom: 1px solid rgba(255,255,255,0.04); }
-.pin-table tr:hover td { background: rgba(0,212,255,0.03); }
-.pin-table .mono { font-family: 'Space Mono', monospace; font-size: 11px; color: var(--accent); }
-.pin-table .io-in { color: #60a5fa; }
-.pin-table .io-out { color: var(--accent2); }
-.pin-table .io-pwr { color: #f87171; }
+/* ── MODULES ── */
+.modules-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:24px;margin-top:60px;}
+.module-card{background:var(--surface);border:1px solid var(--border);overflow:hidden;transition:border-color .2s,transform .2s;}
+.module-card:hover{border-color:var(--accent);transform:translateY(-4px);}
+.module-img{width:100%;aspect-ratio:1;object-fit:cover;filter:saturate(0.8);transition:filter .3s;}
+.module-card:hover .module-img{filter:saturate(1);}
+.module-info{padding:20px;}
+.module-name{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;margin-bottom:6px;}
+.module-chip{font-family:'Space Mono',monospace;font-size:10px;color:var(--accent);letter-spacing:1px;margin-bottom:8px;display:block;}
+.module-desc{font-size:12px;color:var(--text-muted);line-height:1.5;}
 
-/* QUICK START */
-.qs-steps { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1px; background: var(--border); margin-top: 60px; }
-.qs-step { background: var(--bg); padding: 32px 24px; position: relative; }
-.qs-step::after {
-  content: '→'; position: absolute; right: -12px; top: 50%;
-  transform: translateY(-50%);
-  color: var(--accent); font-size: 18px; z-index:1;
-}
-.qs-step:last-child::after { display:none; }
-.qs-num {
-  font-family: 'Space Mono', monospace; font-size: 11px;
-  color: var(--accent); letter-spacing: 2px; margin-bottom: 12px;
-}
-.qs-title {
-  font-family: 'Rajdhani', sans-serif; font-size: 20px; font-weight: 700;
-  margin-bottom: 10px;
-}
-.qs-desc { font-size: 13px; color: var(--text-muted); line-height: 1.6; }
-.qs-code {
-  margin-top: 12px; background: #020a12; border: 1px solid var(--border);
-  padding: 10px 14px; font-family: 'Space Mono', monospace;
-  font-size: 11px; color: var(--accent2); line-height: 1.7;
-}
+/* ── DIAGRAM ── */
+.diagram-section{background:var(--bg2);}
+.diagram-wrap{margin-top:60px;border:1px solid var(--border);background:var(--surface);padding:40px;position:relative;overflow:hidden;}
+.diagram-wrap::before{content:'';position:absolute;inset:0;background-image:linear-gradient(rgba(0,212,255,0.02) 1px,transparent 1px),linear-gradient(90deg,rgba(0,212,255,0.02) 1px,transparent 1px);background-size:30px 30px;pointer-events:none;}
+.diagram-img{width:100%;max-width:700px;display:block;margin:0 auto;position:relative;z-index:1;}
 
-/* CTA */
-.cta-section {
-  background: linear-gradient(135deg, rgba(0,212,255,0.08), rgba(0,255,157,0.05));
-  border-top: 1px solid rgba(0,212,255,0.2);
-  text-align: center; padding: 100px 40px;
-}
-.cta-title {
-  font-family: 'Rajdhani', sans-serif; font-size: 52px; font-weight: 700;
-  margin-bottom: 16px;
-}
-.cta-sub { color: var(--text-muted); font-size: 17px; margin-bottom: 40px; }
-.cta-actions { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
-.contact-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; max-width: 800px; margin: 60px auto 0; }
-.contact-card {
-  background: var(--surface); border: 1px solid var(--border);
-  padding: 28px; text-align: left;
-}
-.contact-card .icon { font-size: 28px; margin-bottom: 12px; }
-.contact-card .c-label { font-size: 11px; color: var(--text-dim); letter-spacing: 1px; text-transform: uppercase; margin-bottom: 6px; }
-.contact-card .c-val { font-size: 14px; color: var(--text); font-weight: 500; }
-.contact-card a { color: var(--accent); text-decoration: none; }
-.contact-card a:hover { text-decoration: underline; }
+/* ── QUICK START ── */
+.qs-steps{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--border);margin-top:60px;}
+.qs-step{background:var(--bg);padding:32px 24px;position:relative;}
+.qs-step::after{content:'→';position:absolute;right:-12px;top:50%;transform:translateY(-50%);color:var(--accent);font-size:18px;z-index:1;}
+.qs-step:last-child::after{display:none;}
+.qs-num{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);letter-spacing:2px;margin-bottom:12px;}
+.qs-title{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;margin-bottom:10px;}
+.qs-desc{font-size:13px;color:var(--text-muted);line-height:1.6;}
+.qs-code{margin-top:12px;background:#020a12;border:1px solid var(--border);padding:10px 14px;font-family:'Space Mono',monospace;font-size:11px;color:var(--accent2);line-height:1.7;}
 
-/* FOOTER */
-footer {
-  background: var(--bg2); border-top: 1px solid var(--border);
-  padding: 32px 40px; display: flex; align-items: center; justify-content: space-between;
-}
-.footer-logo {
-  font-family: 'Rajdhani', sans-serif; font-size: 18px; font-weight: 700; color: var(--accent);
-}
-.footer-text { font-size: 12px; color: var(--text-dim); }
-.footer-links { display: flex; gap: 24px; }
-.footer-links a { font-size: 12px; color: var(--text-dim); text-decoration: none; }
-.footer-links a:hover { color: var(--accent); }
+/* ── WIKI ── */
+.wiki-section{background:var(--bg2);}
+.wiki-grid{display:grid;grid-template-columns:280px 1fr;gap:0;margin-top:60px;border:1px solid var(--border);min-height:600px;}
+.wiki-nav{background:var(--surface);border-right:1px solid var(--border);padding:24px 0;}
+.wiki-nav-title{font-family:'Space Mono',monospace;font-size:10px;color:var(--text-dim);letter-spacing:2px;padding:0 24px 12px;text-transform:uppercase;border-bottom:1px solid var(--border);margin-bottom:8px;}
+.wiki-link{display:flex;align-items:center;gap:10px;padding:10px 24px;font-size:13px;color:var(--text-muted);cursor:pointer;transition:background .15s,color .15s;border-left:3px solid transparent;}
+.wiki-link:hover{background:rgba(0,212,255,0.05);color:var(--text);}
+.wiki-link.active{background:rgba(0,212,255,0.08);color:var(--accent);border-left-color:var(--accent);}
+.wiki-link .dot{width:6px;height:6px;border-radius:50%;background:currentColor;flex-shrink:0;}
+.wiki-content{padding:40px;}
+.wiki-page{display:none;}
+.wiki-page.active{display:block;}
+.wiki-page-title{font-family:'Rajdhani',sans-serif;font-size:32px;font-weight:700;margin-bottom:8px;color:var(--text);}
+.wiki-page-sub{color:var(--text-muted);font-size:14px;margin-bottom:32px;padding-bottom:20px;border-bottom:1px solid var(--border);}
+.wiki-h2{font-family:'Rajdhani',sans-serif;font-size:20px;font-weight:700;color:var(--accent);margin:28px 0 12px;display:flex;align-items:center;gap:8px;}
+.wiki-h2::before{content:'';width:3px;height:20px;background:var(--accent);}
+.wiki-p{font-size:14px;color:var(--text-muted);line-height:1.75;margin-bottom:14px;}
+.code-block{background:#020a12;border:1px solid var(--border);border-left:3px solid var(--accent);padding:16px 20px;font-family:'Space Mono',monospace;font-size:12px;color:#7dd3fc;margin:16px 0;overflow-x:auto;line-height:1.8;}
+.code-block .comment{color:var(--text-dim);}
+.code-block .cmd{color:var(--accent2);}
+.code-block .str{color:#fbbf24;}
+.note-box{background:rgba(255,215,0,0.06);border:1px solid rgba(255,215,0,0.2);border-left:3px solid var(--warn);padding:16px 20px;margin:16px 0;font-size:13px;color:var(--text-muted);line-height:1.6;}
+.note-box strong{color:var(--warn);}
+.success-box{background:rgba(0,255,157,0.05);border:1px solid rgba(0,255,157,0.2);border-left:3px solid var(--accent2);padding:16px 20px;margin:16px 0;font-size:13px;color:var(--text-muted);line-height:1.6;}
+.success-box strong{color:var(--accent2);}
+.pin-table{width:100%;border-collapse:collapse;margin:16px 0;font-size:13px;}
+.pin-table th{background:var(--surface2);color:var(--text-muted);padding:10px 14px;text-align:left;font-weight:600;border-bottom:1px solid var(--border);font-family:'Rajdhani',sans-serif;font-size:14px;}
+.pin-table td{padding:10px 14px;border-bottom:1px solid rgba(255,255,255,0.04);}
+.pin-table tr:hover td{background:rgba(0,212,255,0.03);}
+.pin-table .mono{font-family:'Space Mono',monospace;font-size:11px;color:var(--accent);}
+.pin-table .io-in{color:#60a5fa;}
+.pin-table .io-out{color:var(--accent2);}
+.pin-table .io-pwr{color:#f87171;}
 
-/* BADGE INLINE */
-.badge {
-  display: inline-flex; align-items: center; gap: 4px;
-  background: rgba(0,255,157,0.1); border: 1px solid rgba(0,255,157,0.25);
-  color: var(--accent2); font-family: 'Space Mono', monospace;
-  font-size: 10px; padding: 2px 8px; letter-spacing: 1px;
-  vertical-align: middle; margin-left: 6px;
-}
-.badge.blue { background: rgba(0,212,255,0.1); border-color: rgba(0,212,255,0.25); color: var(--accent); }
-.badge.orange { background: rgba(255,107,53,0.1); border-color: rgba(255,107,53,0.25); color: var(--accent3); }
+/* ── CTA ── */
+.cta-section{background:linear-gradient(135deg,rgba(0,212,255,0.08),rgba(0,255,157,0.05));border-top:1px solid rgba(0,212,255,0.2);text-align:center;padding:100px 40px;}
+.cta-title{font-family:'Rajdhani',sans-serif;font-size:52px;font-weight:700;margin-bottom:16px;}
+.cta-sub{color:var(--text-muted);font-size:17px;margin-bottom:40px;}
+.cta-actions{display:flex;justify-content:center;gap:20px;flex-wrap:wrap;}
+.contact-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:24px;max-width:800px;margin:60px auto 0;}
+.contact-card{background:var(--surface);border:1px solid var(--border);padding:28px;text-align:left;}
+.contact-card .icon{font-size:28px;margin-bottom:12px;}
+.contact-card .c-label{font-size:11px;color:var(--text-dim);letter-spacing:1px;text-transform:uppercase;margin-bottom:6px;}
+.contact-card .c-val{font-size:14px;color:var(--text);font-weight:500;}
+.contact-card a{color:var(--accent);text-decoration:none;}
+.contact-card a:hover{text-decoration:underline;}
 
-@media (max-width: 900px) {
-  .hero-inner { grid-template-columns: 1fr; }
-  .board-frame { width: 320px; height: 320px; }
-  .features-grid { grid-template-columns: 1fr; }
-  .specs-wrap { grid-template-columns: 1fr; }
-  .modules-grid { grid-template-columns: repeat(2, 1fr); }
-  .wiki-grid { grid-template-columns: 1fr; }
-  .wiki-nav { border-right: none; border-bottom: 1px solid var(--border); }
-  .qs-steps { grid-template-columns: 1fr 1fr; }
-  .vs-grid { grid-template-columns: 1fr; }
-  .contact-grid { grid-template-columns: 1fr; }
-  nav { padding: 0 20px; }
-  .nav-links { display: none; }
-  section { padding: 60px 20px; }
-  h1 { font-size: 38px; }
+/* ── FOOTER ── */
+footer{background:var(--bg2);border-top:1px solid var(--border);padding:32px 40px;display:flex;align-items:center;justify-content:space-between;}
+.footer-logo{font-family:'Rajdhani',sans-serif;font-size:18px;font-weight:700;color:var(--accent);}
+.footer-text{font-size:12px;color:var(--text-dim);}
+.footer-links{display:flex;gap:24px;}
+.footer-links a{font-size:12px;color:var(--text-dim);text-decoration:none;}
+.footer-links a:hover{color:var(--accent);}
+
+/* ── RESPONSIVE ── */
+@media(max-width:1024px){
+  .hero-inner{grid-template-columns:1fr;}
+  .board-frame{width:320px;height:320px;}
+  .features-grid{grid-template-columns:1fr 1fr;}
+  .modules-grid{grid-template-columns:repeat(2,1fr);}
+  .qs-steps{grid-template-columns:1fr 1fr;}
+  .nav-links{display:none;}
+}
+@media(max-width:768px){
+  nav{padding:0 16px;}
+  .features-grid,.specs-wrap,.vs-grid,.contact-grid{grid-template-columns:1fr;}
+  .vs-divider-col{writing-mode:horizontal-tb;padding:12px;border:none;border-top:1px solid var(--border);border-bottom:1px solid var(--border);}
+  .wiki-grid{grid-template-columns:1fr;}
+  .wiki-nav{border-right:none;border-bottom:1px solid var(--border);}
+  section{padding:60px 20px;}
+  h1{font-size:38px;}
+  .qs-steps{grid-template-columns:1fr;}
+  .qs-step::after{display:none;}
+  footer{flex-direction:column;gap:16px;text-align:center;}
 }
 </style>
 </head>
 <body>
 
-<!-- NAV -->
+<!-- ════════════════ NAV ════════════════ -->
 <nav>
   <div class="nav-logo">HBQ <span>TECHNOLOGY</span></div>
   <div class="nav-links">
-    <a href="#features">Features</a>
-    <a href="#specs">Specs</a>
-    <a href="#modules">Modules</a>
-    <a href="#wiki">Wiki</a>
-    <a href="#quickstart">Quick Start</a>
-    <a href="#buy">Buy</a>
+    <a href="#compare"   data-i18n="nav_compare">Compare</a>
+    <a href="#features"  data-i18n="nav_features">Features</a>
+    <a href="#specs"     data-i18n="nav_specs">Specs</a>
+    <a href="#modules"   data-i18n="nav_modules">Modules</a>
+    <a href="#wiki"      data-i18n="nav_wiki">Wiki</a>
+    <a href="#buy"       data-i18n="nav_buy">Buy</a>
   </div>
-  <a href="https://store.hbqsolution.com/" class="nav-cta">Buy Now</a>
+  <div class="nav-right">
+    <div class="lang-switcher">
+      <button class="lang-btn active" onclick="setLang('en')" id="btn-en"><span class="flag">🇬🇧</span> EN</button>
+      <button class="lang-btn"        onclick="setLang('vi')" id="btn-vi"><span class="flag">🇻🇳</span> VI</button>
+    </div>
+    <a href="https://store.hbqsolution.com/" class="nav-cta" data-i18n="nav_order">Order Now</a>
+  </div>
 </nav>
 
-<!-- HERO -->
+<!-- ════════════════ HERO ════════════════ -->
 <section class="hero" id="hero">
   <div class="hero-grid-bg"></div>
   <div class="hero-glow"></div>
   <div class="hero-glow2"></div>
   <div class="hero-inner">
     <div class="hero-text">
-      <div class="hero-badge">Industrial IoT Gateway · Rev 2.1</div>
-      <h1>
-        <span class="line1">HBQ CM5</span>
-        <span class="line2">IoT Gateway</span>
-      </h1>
-      <p class="hero-desc">
-        Raspberry Pi CM5-powered industrial carrier board with built-in 4G LTE (Quectel EC25-E), LoRaWAN (LR62E), Zigbee (Silicon Labs MGM210P), RS485, and M.2 expansion. The ultimate multi-protocol IoT edge gateway for industrial deployments.
-      </p>
+      <div class="hero-badge" data-i18n="hero_badge">Industrial IoT Gateway · Rev 2.1</div>
+      <h1><span class="line1">HBQ CM5</span><span class="line2">IoT Gateway</span></h1>
+      <p class="hero-desc" data-i18n="hero_desc">Raspberry Pi CM5-powered industrial carrier board with built-in 4G LTE (Quectel EC25-E), LoRaWAN (LR62E), Zigbee (Silicon Labs MGM210P), RS485, and M.2 expansion. The ultimate multi-protocol IoT edge gateway for industrial deployments.</p>
       <div class="hero-actions">
-        <a href="https://store.hbqsolution.com/" class="btn-primary">Order Now</a>
-        <a href="#wiki" class="btn-secondary">Documentation</a>
+        <a href="https://store.hbqsolution.com/" class="btn-primary" data-i18n="hero_btn_order">Order Now</a>
+        <a href="#wiki" class="btn-secondary" data-i18n="hero_btn_docs">Documentation</a>
         <a href="https://github.com/hbqtechnologycompany/HBQ_Industrial_Base_Board_For_Pi_CM5" class="btn-secondary">GitHub ↗</a>
       </div>
       <div class="hero-stats">
-        <div class="stat"><span class="stat-num">4G</span><span class="stat-label">LTE Cat 4</span></div>
-        <div class="stat"><span class="stat-num">3</span><span class="stat-label">IoT Protocols</span></div>
-        <div class="stat"><span class="stat-num">1G</span><span class="stat-label">Ethernet</span></div>
-        <div class="stat"><span class="stat-num">MIT</span><span class="stat-label">Open Source</span></div>
+        <div class="stat"><span class="stat-num">4G</span><span class="stat-label" data-i18n="stat_lte">LTE Cat 4</span></div>
+        <div class="stat"><span class="stat-num">3</span><span class="stat-label" data-i18n="stat_proto">IoT Protocols</span></div>
+        <div class="stat"><span class="stat-num">1G</span><span class="stat-label" data-i18n="stat_eth">Ethernet</span></div>
+        <div class="stat"><span class="stat-num">MIT</span><span class="stat-label" data-i18n="stat_oss">Open Source</span></div>
       </div>
     </div>
     <div class="hero-visual">
       <div class="board-frame">
-        <div class="board-corner tl"></div>
-        <div class="board-corner tr"></div>
-        <div class="board-corner bl"></div>
-        <div class="board-corner br"></div>
+        <div class="board-corner tl"></div><div class="board-corner tr"></div>
+        <div class="board-corner bl"></div><div class="board-corner br"></div>
         <div class="scan-line"></div>
-        <img src="assets/images/Board_CM5.png" alt="HBQ CM5 IoT Gateway Board" class="board-img" onerror="this.src='https://raw.githubusercontent.com/hbqtechnologycompany/HBQ_Industrial_Base_Board_For_Pi_CM5/main/HW/HW.jpg'">
+        <img src="assets/images/Board_CM5.png" alt="HBQ CM5 IoT Gateway Board" onerror="this.src='https://raw.githubusercontent.com/hbqtechnologycompany/HBQ_Industrial_Base_Board_For_Pi_CM5/main/HW/HW.jpg'" class="board-img">
       </div>
     </div>
   </div>
 </section>
-
 <hr class="divider">
 
-<!-- VS SECTION -->
+<!-- ════════════════ VS ════════════════ -->
 <section class="vs-section" id="compare">
   <div class="section-inner">
-    <div class="section-label">Comparison</div>
-    <h2 class="section-title">HBQ CM5 vs Competitors</h2>
-    <p class="section-sub">See why the HBQ Industrial Gateway delivers more capabilities for demanding IoT deployments than comparable carrier boards.</p>
+    <div class="section-label" data-i18n="vs_label">Comparison</div>
+    <h2 class="section-title" data-i18n="vs_title">HBQ CM5 vs Competitors</h2>
+    <p class="section-sub" data-i18n="vs_sub">See why the HBQ Industrial Gateway delivers more capabilities for demanding IoT deployments than comparable carrier boards.</p>
     <div class="vs-grid">
       <div class="vs-col ours">
         <div class="vs-brand ours-brand">HBQ Industrial CM5 Gateway</div>
-        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong>4G LTE Cat 4 (Quectel EC25-E)</strong><span>Built-in cellular, no external modem needed</span></div></div>
-        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong>LoRaWAN Module (LR62E)</strong><span>Mini-PCIe slot — swap or upgrade anytime</span></div></div>
-        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong>Zigbee MGM210P / MGM12P</strong><span>Silicon Labs, enterprise-grade mesh networking</span></div></div>
-        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong>RS485 Industrial Bus</strong><span>Native Modbus/RTU for industrial sensors</span></div></div>
-        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong>M.2 B-Key + M-Key (Optional)</strong><span>Dual M.2 expansion for NVMe or AI modules</span></div></div>
-        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong>Dual MIPI CSI (Camera)</strong><span>Vision AI capabilities out of the box</span></div></div>
-        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong>Hailo-8 AI Accelerator Ready</strong><span>Plug-in M.2 NPU for edge inference</span></div></div>
-        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong>Open Source Hardware (MIT)</strong><span>Full schematics + code on GitHub</span></div></div>
-        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong>Vietnam-based support</strong><span>Zalo/Phone support (+84) 035 719 1643</span></div></div>
+        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong data-i18n="vs_o1t">4G LTE Cat 4 (Quectel EC25-E)</strong><span data-i18n="vs_o1s">Built-in cellular, no external modem needed</span></div></div>
+        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong data-i18n="vs_o2t">LoRaWAN Module (LR62E)</strong><span data-i18n="vs_o2s">Mini-PCIe slot — swap or upgrade anytime</span></div></div>
+        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong data-i18n="vs_o3t">Zigbee MGM210P / MGM12P</strong><span data-i18n="vs_o3s">Silicon Labs, enterprise-grade mesh networking</span></div></div>
+        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong data-i18n="vs_o4t">RS485 Industrial Bus</strong><span data-i18n="vs_o4s">Native Modbus/RTU for industrial sensors</span></div></div>
+        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong data-i18n="vs_o5t">M.2 B-Key + M-Key (Optional)</strong><span data-i18n="vs_o5s">Dual M.2 expansion for NVMe or AI modules</span></div></div>
+        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong data-i18n="vs_o6t">Dual MIPI CSI (Camera)</strong><span data-i18n="vs_o6s">Vision AI capabilities out of the box</span></div></div>
+        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong data-i18n="vs_o7t">Hailo-8 AI Accelerator Ready</strong><span data-i18n="vs_o7s">Plug-in M.2 NPU for edge inference</span></div></div>
+        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong data-i18n="vs_o8t">Open Source Hardware (MIT)</strong><span data-i18n="vs_o8s">Full schematics + code on GitHub</span></div></div>
+        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong data-i18n="vs_o9t">Vietnam-based support</strong><span data-i18n="vs_o9s">Zalo/Phone support (+84) 035 719 1643</span></div></div>
       </div>
       <div class="vs-divider-col">VS</div>
       <div class="vs-col theirs">
         <div class="vs-brand theirs-brand">Waveshare CM5 Dual ETH 4G/5G</div>
-        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong>4G/5G Option</strong><span>Via M.2 slot (module sold separately)</span></div></div>
-        <div class="vs-item"><span class="vs-icon">❌</span><div class="vs-item-text"><strong>No LoRa</strong><span>No onboard LoRaWAN capability</span></div></div>
-        <div class="vs-item"><span class="vs-icon">❌</span><div class="vs-item-text"><strong>No Zigbee</strong><span>Zigbee mesh not supported</span></div></div>
-        <div class="vs-item"><span class="vs-icon">❌</span><div class="vs-item-text"><strong>No RS485</strong><span>Industrial bus not included</span></div></div>
-        <div class="vs-item"><span class="vs-icon">⚠️</span><div class="vs-item-text"><strong>Single M.2 Key</strong><span>Less expansion flexibility</span></div></div>
-        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong>Dual ETH</strong><span>Two Gigabit Ethernet ports</span></div></div>
-        <div class="vs-item"><span class="vs-icon">⚠️</span><div class="vs-item-text"><strong>AI via M.2 only</strong><span>No dedicated AI slot layout</span></div></div>
-        <div class="vs-item"><span class="vs-icon">⚠️</span><div class="vs-item-text"><strong>Closed Design</strong><span>Limited public schematic access</span></div></div>
-        <div class="vs-item"><span class="vs-icon">⚠️</span><div class="vs-item-text"><strong>China-based support only</strong><span>No local SEA region support</span></div></div>
+        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong data-i18n="vs_t1t">4G/5G Option</strong><span data-i18n="vs_t1s">Via M.2 slot (module sold separately)</span></div></div>
+        <div class="vs-item"><span class="vs-icon">❌</span><div class="vs-item-text"><strong data-i18n="vs_t2t">No LoRa</strong><span data-i18n="vs_t2s">No onboard LoRaWAN capability</span></div></div>
+        <div class="vs-item"><span class="vs-icon">❌</span><div class="vs-item-text"><strong data-i18n="vs_t3t">No Zigbee</strong><span data-i18n="vs_t3s">Zigbee mesh not supported</span></div></div>
+        <div class="vs-item"><span class="vs-icon">❌</span><div class="vs-item-text"><strong data-i18n="vs_t4t">No RS485</strong><span data-i18n="vs_t4s">Industrial bus not included</span></div></div>
+        <div class="vs-item"><span class="vs-icon">⚠️</span><div class="vs-item-text"><strong data-i18n="vs_t5t">Single M.2 Key</strong><span data-i18n="vs_t5s">Less expansion flexibility</span></div></div>
+        <div class="vs-item"><span class="vs-icon">✅</span><div class="vs-item-text"><strong data-i18n="vs_t6t">Dual ETH</strong><span data-i18n="vs_t6s">Two Gigabit Ethernet ports</span></div></div>
+        <div class="vs-item"><span class="vs-icon">⚠️</span><div class="vs-item-text"><strong data-i18n="vs_t7t">AI via M.2 only</strong><span data-i18n="vs_t7s">No dedicated AI slot layout</span></div></div>
+        <div class="vs-item"><span class="vs-icon">⚠️</span><div class="vs-item-text"><strong data-i18n="vs_t8t">Closed Design</strong><span data-i18n="vs_t8s">Limited public schematic access</span></div></div>
+        <div class="vs-item"><span class="vs-icon">⚠️</span><div class="vs-item-text"><strong data-i18n="vs_t9t">China-based support only</strong><span data-i18n="vs_t9s">No local SEA region support</span></div></div>
       </div>
     </div>
   </div>
 </section>
-
 <hr class="divider">
 
-<!-- FEATURES -->
+<!-- ════════════════ FEATURES ════════════════ -->
 <section id="features">
   <div class="section-inner">
-    <div class="section-label">Capabilities</div>
-    <h2 class="section-title">Everything You Need,<br>Nothing You Don't</h2>
-    <p class="section-sub">The HBQ CM5 Gateway integrates the most critical IoT communication protocols on a single industrial-grade carrier board.</p>
+    <div class="section-label" data-i18n="feat_label">Capabilities</div>
+    <h2 class="section-title" data-i18n="feat_title">Everything You Need,<br>Nothing You Don't</h2>
+    <p class="section-sub" data-i18n="feat_sub">The HBQ CM5 Gateway integrates the most critical IoT communication protocols on a single industrial-grade carrier board.</p>
     <div class="features-grid">
-      <div class="feat-card">
-        <div class="feat-icon">📡</div>
-        <div class="feat-title">4G LTE Cat 4</div>
-        <p class="feat-desc">Quectel EC25-E module soldered directly on board. Supports download speeds up to 150 Mbps / upload 50 Mbps. SIM card slot included. AT command interface via USB/UART.</p>
-        <span class="feat-tag">EC25-E · Cat 4 · 150Mbps</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">🌐</div>
-        <div class="feat-title">LoRaWAN Gateway</div>
-        <p class="feat-desc">LR62E LoRa module via Mini-PCIe (Wio-SX1262 compatible). Long-range, low-power communication up to 15 km line-of-sight. Ideal for sensor networks and smart agriculture.</p>
-        <span class="feat-tag">LR62E · SX1262 · LoRaWAN</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">🔷</div>
-        <div class="feat-title">Zigbee Mesh Network</div>
-        <p class="feat-desc">Silicon Labs MGM210P / MGM12P NCP module. Full Zigbee 3.0 support via CPC protocol. Control hundreds of smart home and industrial Zigbee devices.</p>
-        <span class="feat-tag">MGM210P · Zigbee 3.0 · CPC</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">🏭</div>
-        <div class="feat-title">RS485 Industrial Bus</div>
-        <p class="feat-desc">Native RS485 interface for Modbus RTU/ASCII protocols. Connect PLCs, inverters, energy meters, and industrial sensors directly — no external converter required.</p>
-        <span class="feat-tag">RS485 · Modbus · Industrial</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">🧠</div>
-        <div class="feat-title">AI-Ready (Hailo-8)</div>
-        <p class="feat-desc">M.2 slot supports Hailo-8 AI accelerator. Run real-time object detection, facial recognition, and anomaly detection at the edge with 26 TOPS performance.</p>
-        <span class="feat-tag">Hailo-8 · 26 TOPS · Edge AI</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">📷</div>
-        <div class="feat-title">Dual MIPI CSI Camera</div>
-        <p class="feat-desc">Two MIPI CSI/DSI interfaces for simultaneous dual-camera operation. Perfect for stereo vision, multi-angle surveillance, and AI vision applications.</p>
-        <span class="feat-tag">2x MIPI CSI · Vision AI</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">🌐</div>
-        <div class="feat-title">Gigabit Ethernet</div>
-        <p class="feat-desc">1000Base-T Ethernet port (Trxcom TRJG052GHENL) for reliable wired connectivity. Stable network backbone for gateway applications with high data throughput.</p>
-        <span class="feat-tag">1000M · RJ45 · Trxcom</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">🔌</div>
-        <div class="feat-title">Rich I/O Interfaces</div>
-        <p class="feat-desc">SPI, UART, I2C, 2× USB, USB Type-C, HDMI, SD Card, FAN connector, and DC power jack. Everything you need for peripheral expansion and system integration.</p>
-        <span class="feat-tag">SPI · I2C · UART · HDMI</span>
-      </div>
-      <div class="feat-card">
-        <div class="feat-icon">📂</div>
-        <div class="feat-title">Open Source (MIT)</div>
-        <p class="feat-desc">Full schematics, Python examples, and firmware on GitHub. MIT licensed — use freely in your commercial products. Active community and manufacturer support.</p>
-        <span class="feat-tag">MIT · GitHub · Open HW</span>
-      </div>
+      <div class="feat-card"><div class="feat-icon">📡</div><div class="feat-title" data-i18n="f1_title">4G LTE Cat 4</div><p class="feat-desc" data-i18n="f1_desc">Quectel EC25-E module soldered directly on board. Supports download speeds up to 150 Mbps / upload 50 Mbps. SIM card slot included. AT command interface via USB/UART.</p><span class="feat-tag">EC25-E · Cat 4 · 150Mbps</span></div>
+      <div class="feat-card"><div class="feat-icon">🌐</div><div class="feat-title" data-i18n="f2_title">LoRaWAN Gateway</div><p class="feat-desc" data-i18n="f2_desc">LR62E LoRa module via Mini-PCIe (Wio-SX1262 compatible). Long-range, low-power communication up to 15 km line-of-sight. Ideal for sensor networks and smart agriculture.</p><span class="feat-tag">LR62E · SX1262 · LoRaWAN</span></div>
+      <div class="feat-card"><div class="feat-icon">🔷</div><div class="feat-title" data-i18n="f3_title">Zigbee Mesh Network</div><p class="feat-desc" data-i18n="f3_desc">Silicon Labs MGM210P / MGM12P NCP module. Full Zigbee 3.0 support via CPC protocol. Control hundreds of smart home and industrial Zigbee devices.</p><span class="feat-tag">MGM210P · Zigbee 3.0 · CPC</span></div>
+      <div class="feat-card"><div class="feat-icon">🏭</div><div class="feat-title" data-i18n="f4_title">RS485 Industrial Bus</div><p class="feat-desc" data-i18n="f4_desc">Native RS485 interface for Modbus RTU/ASCII protocols. Connect PLCs, inverters, energy meters, and industrial sensors directly — no external converter required.</p><span class="feat-tag">RS485 · Modbus · Industrial</span></div>
+      <div class="feat-card"><div class="feat-icon">🧠</div><div class="feat-title" data-i18n="f5_title">AI-Ready (Hailo-8)</div><p class="feat-desc" data-i18n="f5_desc">M.2 slot supports Hailo-8 AI accelerator. Run real-time object detection, facial recognition, and anomaly detection at the edge with 26 TOPS performance.</p><span class="feat-tag">Hailo-8 · 26 TOPS · Edge AI</span></div>
+      <div class="feat-card"><div class="feat-icon">📷</div><div class="feat-title" data-i18n="f6_title">Dual MIPI CSI Camera</div><p class="feat-desc" data-i18n="f6_desc">Two MIPI CSI/DSI interfaces for simultaneous dual-camera operation. Perfect for stereo vision, multi-angle surveillance, and AI vision applications.</p><span class="feat-tag">2x MIPI CSI · Vision AI</span></div>
+      <div class="feat-card"><div class="feat-icon">🌐</div><div class="feat-title" data-i18n="f7_title">Gigabit Ethernet</div><p class="feat-desc" data-i18n="f7_desc">1000Base-T Ethernet port (Trxcom TRJG052GHENL) for reliable wired connectivity. Stable network backbone for gateway applications with high data throughput.</p><span class="feat-tag">1000M · RJ45 · Trxcom</span></div>
+      <div class="feat-card"><div class="feat-icon">🔌</div><div class="feat-title" data-i18n="f8_title">Rich I/O Interfaces</div><p class="feat-desc" data-i18n="f8_desc">SPI, UART, I2C, 2× USB, USB Type-C, HDMI, SD Card, FAN connector, and DC power jack. Everything you need for peripheral expansion and system integration.</p><span class="feat-tag">SPI · I2C · UART · HDMI</span></div>
+      <div class="feat-card"><div class="feat-icon">📂</div><div class="feat-title" data-i18n="f9_title">Open Source (MIT)</div><p class="feat-desc" data-i18n="f9_desc">Full schematics, Python examples, and firmware on GitHub. MIT licensed — use freely in your commercial products. Active community and manufacturer support.</p><span class="feat-tag">MIT · GitHub · Open HW</span></div>
     </div>
   </div>
 </section>
-
 <hr class="divider">
 
-<!-- SPECS -->
+<!-- ════════════════ SPECS ════════════════ -->
 <section class="specs-section" id="specs">
   <div class="section-inner">
-    <div class="section-label">Technical Specifications</div>
-    <h2 class="section-title">Full Specifications</h2>
-    <p class="section-sub">Complete hardware specifications for the HBQ Industrial Base Board for Raspberry Pi CM5 Rev 2.1.</p>
+    <div class="section-label" data-i18n="spec_label">Technical Specifications</div>
+    <h2 class="section-title" data-i18n="spec_title">Full Specifications</h2>
+    <p class="section-sub" data-i18n="spec_sub">Complete hardware specifications for the HBQ Industrial Base Board for Raspberry Pi CM5 Rev 2.1.</p>
     <div class="specs-wrap">
       <div class="spec-group">
-        <div class="spec-group-title">Core Platform</div>
-        <div class="spec-row"><span class="spec-key">Processor Module</span><span class="spec-val">Raspberry Pi CM5 <span class="highlight">(sold separately)</span></span></div>
+        <div class="spec-group-title" data-i18n="sg1">Core Platform</div>
+        <div class="spec-row"><span class="spec-key" data-i18n="s1k">Processor Module</span><span class="spec-val">Raspberry Pi CM5 <span class="hl" data-i18n="s1v">(sold separately)</span></span></div>
         <div class="spec-row"><span class="spec-key">CPU</span><span class="spec-val">Cortex-A76 Quad-core 2.4 GHz</span></div>
-        <div class="spec-row"><span class="spec-key">RAM Options</span><span class="spec-val">2GB / 4GB / 8GB LPDDR4X</span></div>
+        <div class="spec-row"><span class="spec-key">RAM</span><span class="spec-val">2GB / 4GB / 8GB LPDDR4X</span></div>
         <div class="spec-row"><span class="spec-key">eMMC</span><span class="spec-val">0GB / 16GB / 32GB / 64GB</span></div>
-        <div class="spec-row"><span class="spec-key">Board Revision</span><span class="spec-val"><span class="highlight">Rev 2.1</span></span></div>
+        <div class="spec-row"><span class="spec-key" data-i18n="s2k">Board Revision</span><span class="spec-val"><span class="hl">Rev 2.1</span></span></div>
         <div class="spec-row"><span class="spec-key">OS</span><span class="spec-val">Raspberry Pi OS (64-bit)</span></div>
       </div>
       <div class="spec-group">
-        <div class="spec-group-title">Wireless Connectivity</div>
-        <div class="spec-row"><span class="spec-key">4G LTE</span><span class="spec-val"><span class="highlight">Quectel EC25-E Cat 4</span></span></div>
+        <div class="spec-group-title" data-i18n="sg2">Wireless Connectivity</div>
+        <div class="spec-row"><span class="spec-key">4G LTE</span><span class="spec-val"><span class="hl">Quectel EC25-E Cat 4</span></span></div>
         <div class="spec-row"><span class="spec-key">LTE DL/UL</span><span class="spec-val">150 Mbps / 50 Mbps</span></div>
-        <div class="spec-row"><span class="spec-key">LoRa Module</span><span class="spec-val">LR62E (Wio-SX1262) via Mini-PCIe</span></div>
+        <div class="spec-row"><span class="spec-key">LoRa</span><span class="spec-val">LR62E (Wio-SX1262) via Mini-PCIe</span></div>
         <div class="spec-row"><span class="spec-key">Zigbee</span><span class="spec-val">MGM210PA22JIA2R / MGM12P</span></div>
-        <div class="spec-row"><span class="spec-key">Zigbee Standard</span><span class="spec-val">Zigbee 3.0 / IEEE 802.15.4</span></div>
-        <div class="spec-row"><span class="spec-key">SIM Card</span><span class="spec-val">Nano SIM (push-pull tray)</span></div>
+        <div class="spec-row"><span class="spec-key" data-i18n="s3k">Zigbee Standard</span><span class="spec-val">Zigbee 3.0 / IEEE 802.15.4</span></div>
+        <div class="spec-row"><span class="spec-key">SIM</span><span class="spec-val" data-i18n="s4v">Nano SIM (push-pull tray)</span></div>
       </div>
       <div class="spec-group">
-        <div class="spec-group-title">Wired Interfaces</div>
-        <div class="spec-row"><span class="spec-key">Ethernet</span><span class="spec-val"><span class="highlight">1× Gigabit (1000Base-T)</span></span></div>
+        <div class="spec-group-title" data-i18n="sg3">Wired Interfaces</div>
+        <div class="spec-row"><span class="spec-key">Ethernet</span><span class="spec-val"><span class="hl">1× Gigabit (1000Base-T)</span></span></div>
         <div class="spec-row"><span class="spec-key">USB</span><span class="spec-val">2× USB Type-A + 1× USB Type-C</span></div>
         <div class="spec-row"><span class="spec-key">HDMI</span><span class="spec-val">1× HDMI (micro)</span></div>
-        <div class="spec-row"><span class="spec-key">RS485</span><span class="spec-val"><span class="highlight">1× RS485 (industrial 2-wire)</span></span></div>
+        <div class="spec-row"><span class="spec-key">RS485</span><span class="spec-val"><span class="hl" data-i18n="s5v">1× RS485 (industrial 2-wire)</span></span></div>
         <div class="spec-row"><span class="spec-key">SPI</span><span class="spec-val">SPI1 (configurable via DT overlay)</span></div>
         <div class="spec-row"><span class="spec-key">UART / I2C</span><span class="spec-val">1× UART, 1× I2C header</span></div>
       </div>
       <div class="spec-group">
-        <div class="spec-group-title">Expansion & Storage</div>
-        <div class="spec-row"><span class="spec-key">M.2 B-Key</span><span class="spec-val"><span class="highlight">M.2 2230/2242/2280 (B-Key)</span></span></div>
-        <div class="spec-row"><span class="spec-key">M.2 M-Key</span><span class="spec-val">Optional (NVMe / AI accelerator)</span></div>
-        <div class="spec-row"><span class="spec-key">Mini-PCIe</span><span class="spec-val">1× for LoRaWAN module</span></div>
-        <div class="spec-row"><span class="spec-key">SD Card</span><span class="spec-val">MicroSD (supports UHS-I)</span></div>
-        <div class="spec-row"><span class="spec-key">Camera</span><span class="spec-val"><span class="highlight">2× MIPI CSI / DSI</span></span></div>
+        <div class="spec-group-title" data-i18n="sg4">Expansion & Storage</div>
+        <div class="spec-row"><span class="spec-key">M.2 B-Key</span><span class="spec-val"><span class="hl">M.2 2230/2242/2280</span></span></div>
+        <div class="spec-row"><span class="spec-key">M.2 M-Key</span><span class="spec-val" data-i18n="s6v">Optional (NVMe / AI accelerator)</span></div>
+        <div class="spec-row"><span class="spec-key">Mini-PCIe</span><span class="spec-val" data-i18n="s7v">1× for LoRaWAN module</span></div>
+        <div class="spec-row"><span class="spec-key">SD Card</span><span class="spec-val">MicroSD (UHS-I)</span></div>
+        <div class="spec-row"><span class="spec-key">Camera</span><span class="spec-val"><span class="hl">2× MIPI CSI / DSI</span></span></div>
         <div class="spec-row"><span class="spec-key">AI Module</span><span class="spec-val">Hailo-8 via M.2 (26 TOPS)</span></div>
       </div>
       <div class="spec-group">
-        <div class="spec-group-title">Power & Mechanical</div>
-        <div class="spec-row"><span class="spec-key">Power Input</span><span class="spec-val">DC Jack (12V recommended)</span></div>
-        <div class="spec-row"><span class="spec-key">FAN Connector</span><span class="spec-val">5V PWM Fan header</span></div>
-        <div class="spec-row"><span class="spec-key">Indicators</span><span class="spec-val">System status LEDs</span></div>
-        <div class="spec-row"><span class="spec-key">Zigbee Reset</span><span class="spec-val">Dedicated hardware reset button</span></div>
-        <div class="spec-row"><span class="spec-key">Zigbee Prog Port</span><span class="spec-val">Programming header (JTAG/SWD)</span></div>
+        <div class="spec-group-title" data-i18n="sg5">Power & Mechanical</div>
+        <div class="spec-row"><span class="spec-key" data-i18n="s8k">Power Input</span><span class="spec-val">DC Jack (12V recommended)</span></div>
+        <div class="spec-row"><span class="spec-key">FAN</span><span class="spec-val">5V PWM Fan header</span></div>
+        <div class="spec-row"><span class="spec-key" data-i18n="s9k">Indicators</span><span class="spec-val" data-i18n="s9v">System status LEDs</span></div>
+        <div class="spec-row"><span class="spec-key" data-i18n="s10k">Zigbee Reset</span><span class="spec-val" data-i18n="s10v">Dedicated hardware reset button</span></div>
+        <div class="spec-row"><span class="spec-key" data-i18n="s11k">Zigbee Prog Port</span><span class="spec-val">Programming header (JTAG/SWD)</span></div>
       </div>
       <div class="spec-group">
-        <div class="spec-group-title">Software & Compliance</div>
-        <div class="spec-row"><span class="spec-key">License</span><span class="spec-val"><span class="highlight">MIT Open Source</span></span></div>
-        <div class="spec-row"><span class="spec-key">Schematic</span><span class="spec-val">Public PDF available on GitHub</span></div>
-        <div class="spec-row"><span class="spec-key">Examples</span><span class="spec-val">Python (4G, LoRa), C (Zigbee CPC)</span></div>
-        <div class="spec-row"><span class="spec-key">Certifications</span><span class="spec-val">EC25-E: FCC / CE / UKCA</span></div>
-        <div class="spec-row"><span class="spec-key">Support</span><span class="spec-val">GitHub Issues + Email + Zalo</span></div>
+        <div class="spec-group-title" data-i18n="sg6">Software & License</div>
+        <div class="spec-row"><span class="spec-key">License</span><span class="spec-val"><span class="hl">MIT Open Source</span></span></div>
+        <div class="spec-row"><span class="spec-key" data-i18n="s12k">Schematic</span><span class="spec-val" data-i18n="s12v">Public PDF on GitHub</span></div>
+        <div class="spec-row"><span class="spec-key" data-i18n="s13k">Examples</span><span class="spec-val">Python (4G, LoRa), C (Zigbee CPC)</span></div>
+        <div class="spec-row"><span class="spec-key" data-i18n="s14k">Certifications</span><span class="spec-val">EC25-E: FCC / CE / UKCA</span></div>
+        <div class="spec-row"><span class="spec-key" data-i18n="s15k">Support</span><span class="spec-val">GitHub + Email + Zalo</span></div>
       </div>
     </div>
   </div>
 </section>
-
 <hr class="divider">
 
-<!-- MODULES -->
+<!-- ════════════════ MODULES ════════════════ -->
 <section id="modules">
   <div class="section-inner">
-    <div class="section-label">Hardware Modules</div>
-    <h2 class="section-title">Modular by Design</h2>
-    <p class="section-sub">Each communication module is purpose-built for its protocol. Swap, upgrade, or combine to match your exact deployment needs.</p>
+    <div class="section-label" data-i18n="mod_label">Hardware Modules</div>
+    <h2 class="section-title" data-i18n="mod_title">Modular by Design</h2>
+    <p class="section-sub" data-i18n="mod_sub">Each communication module is purpose-built for its protocol. Swap, upgrade, or combine to match your exact deployment needs.</p>
     <div class="modules-grid">
       <div class="module-card">
         <img src="assets/images/Module 4G_LTE.jpg" alt="4G LTE Module" class="module-img">
-        <div class="module-info">
-          <div class="module-name">4G LTE Module</div>
-          <span class="module-chip">QUECTEL EC25-E</span>
-          <p class="module-desc">LTE Cat 4 with 150/50 Mbps. FCC/CE/UKCA certified. Supports global LTE bands. Control via AT commands on USB/UART.</p>
-        </div>
+        <div class="module-info"><div class="module-name" data-i18n="m1_name">4G LTE Module</div><span class="module-chip">QUECTEL EC25-E</span><p class="module-desc" data-i18n="m1_desc">LTE Cat 4 with 150/50 Mbps. FCC/CE/UKCA certified. Supports global LTE bands. Control via AT commands on USB/UART.</p></div>
       </div>
       <div class="module-card">
         <img src="assets/images/Module Lora WAN.jpg" alt="LoRa Module" class="module-img">
-        <div class="module-info">
-          <div class="module-name">LoRaWAN Module</div>
-          <span class="module-chip">RAK5146 / WM1302 or similar</span>
-          <p class="module-desc">Mini-PCIe form factor. Long range up to 15 km LoS. Low power sensor gateway. SPI interface via SPI1 overlay.</p>
-        </div>
+        <div class="module-info"><div class="module-name" data-i18n="m2_name">LoRaWAN Module</div><span class="module-chip">LR62E / WIO-SX1262</span><p class="module-desc" data-i18n="m2_desc">Mini-PCIe form factor. Long range up to 15 km LoS. Low power sensor gateway. SPI interface via SPI1 overlay.</p></div>
       </div>
       <div class="module-card">
         <img src="assets/images/Module Zigbee.jpg" alt="Zigbee Module" class="module-img">
-        <div class="module-info">
-          <div class="module-name">Zigbee Module</div>
-          <span class="module-chip">SILICON LABS MGM210P</span>
-          <p class="module-desc">Bottom-side mounted. Zigbee 3.0 NCP via CPC. Build full mesh coordinator with cpcd daemon. Dedicated reset + programming port.</p>
-        </div>
+        <div class="module-info"><div class="module-name" data-i18n="m3_name">Zigbee Module</div><span class="module-chip">SILICON LABS MGM210P</span><p class="module-desc" data-i18n="m3_desc">Bottom-side mounted. Zigbee 3.0 NCP via CPC. Build full mesh coordinator with cpcd daemon. Dedicated reset + programming port.</p></div>
       </div>
       <div class="module-card">
         <img src="assets/images/Module Hailo.jpg" alt="Hailo AI Module" class="module-img">
-        <div class="module-info">
-          <div class="module-name">Hailo-8 AI Accelerator</div>
-          <span class="module-chip">HAILO · 26 TOPS · M.2</span>
-          <p class="module-desc">Drop-in M.2 AI NPU. Enables real-time object detection, face recognition, and anomaly detection at the edge without cloud dependency.</p>
-        </div>
+        <div class="module-info"><div class="module-name" data-i18n="m4_name">Hailo-8 AI Accelerator</div><span class="module-chip">HAILO · 26 TOPS · M.2</span><p class="module-desc" data-i18n="m4_desc">Drop-in M.2 AI NPU. Enables real-time object detection, face recognition, and anomaly detection at the edge without cloud dependency.</p></div>
       </div>
     </div>
   </div>
 </section>
-
 <hr class="divider">
 
-<!-- BLOCK DIAGRAM -->
+<!-- ════════════════ DIAGRAM ════════════════ -->
 <section class="diagram-section" id="diagram">
   <div class="section-inner">
-    <div class="section-label">System Architecture</div>
-    <h2 class="section-title">Block Diagram</h2>
-    <p class="section-sub">The CM5 module sits at the heart of the gateway, managing all communication modules and I/O peripherals.</p>
+    <div class="section-label" data-i18n="diag_label">System Architecture</div>
+    <h2 class="section-title" data-i18n="diag_title">Block Diagram</h2>
+    <p class="section-sub" data-i18n="diag_sub">The CM5 module sits at the heart of the gateway, managing all communication modules and I/O peripherals.</p>
     <div class="diagram-wrap">
-      <img src="assets/images/Diagram_CM5.png" alt="CM5 Gateway Block Diagram" class="diagram-img"
-        onerror="this.style.opacity=0.5; this.alt='Block diagram: CM5 Module ↔ Zigbee MGM12P/MGM210P, RS485, LTE Cat4 EC25, LoRa LR62E/SX1262, SD Card, PCIe+M.2, DISP/CAM, RJ45, 2xUSB+TypeC, HDMI'">
+      <img src="assets/images/Diagram_CM5.png" alt="CM5 Gateway Block Diagram" class="diagram-img">
     </div>
   </div>
 </section>
-
 <hr class="divider">
 
-<!-- QUICK START -->
+<!-- ════════════════ QUICK START ════════════════ -->
 <section id="quickstart">
   <div class="section-inner">
-    <div class="section-label">Getting Started</div>
-    <h2 class="section-title">Up & Running in Minutes</h2>
-    <p class="section-sub">From unboxing to a live 4G connection with LoRa and Zigbee active — follow these steps.</p>
+    <div class="section-label" data-i18n="qs_label">Getting Started</div>
+    <h2 class="section-title" data-i18n="qs_title">Up & Running in Minutes</h2>
+    <p class="section-sub" data-i18n="qs_sub">From unboxing to a live 4G connection with LoRa and Zigbee active — follow these steps.</p>
     <div class="qs-steps">
-      <div class="qs-step">
-        <div class="qs-num">// STEP 01</div>
-        <div class="qs-title">Flash OS & Boot</div>
-        <p class="qs-desc">Flash Raspberry Pi OS (64-bit) to CM5 eMMC or SD card using rpiboot + Imager.</p>
-        <div class="qs-code">sudo rpiboot<br>rpi-imager</div>
-      </div>
-      <div class="qs-step">
-        <div class="qs-num">// STEP 02</div>
-        <div class="qs-title">Enable Overlays</div>
-        <p class="qs-desc">Enable SPI1 for LoRa and configure GPIO for 4G power control in <code>/boot/config.txt</code>.</p>
-        <div class="qs-code">dtoverlay=spi1-3cs<br>dtparam=spi=on</div>
-      </div>
-      <div class="qs-step">
-        <div class="qs-num">// STEP 03</div>
-        <div class="qs-title">Power On 4G</div>
-        <p class="qs-desc">Run the EC25 power-on script and bring up the wwan0 interface for cellular data.</p>
-        <div class="qs-code">python3 turn_on_EC25.py<br>sudo dhclient wwan0</div>
-      </div>
-      <div class="qs-step">
-        <div class="qs-num">// STEP 04</div>
-        <div class="qs-title">Deploy Gateway</div>
-        <p class="qs-desc">Start cpcd for Zigbee, run LoRa Python examples, and configure your cloud endpoint.</p>
-        <div class="qs-code">sudo cpcd --config ...<br>python3 lora_send.py</div>
-      </div>
+      <div class="qs-step"><div class="qs-num">// STEP 01</div><div class="qs-title" data-i18n="qs1_title">Flash OS & Boot</div><p class="qs-desc" data-i18n="qs1_desc">Flash Raspberry Pi OS (64-bit) to CM5 eMMC or SD card using rpiboot + Imager.</p><div class="qs-code">sudo rpiboot<br>rpi-imager</div></div>
+      <div class="qs-step"><div class="qs-num">// STEP 02</div><div class="qs-title" data-i18n="qs2_title">Enable Overlays</div><p class="qs-desc" data-i18n="qs2_desc">Enable SPI1 for LoRa and configure GPIO for 4G power control in /boot/config.txt.</p><div class="qs-code">dtoverlay=spi1-3cs<br>dtparam=spi=on</div></div>
+      <div class="qs-step"><div class="qs-num">// STEP 03</div><div class="qs-title" data-i18n="qs3_title">Power On 4G</div><p class="qs-desc" data-i18n="qs3_desc">Run the EC25 power-on script and bring up the wwan0 interface for cellular data.</p><div class="qs-code">python3 turn_on_EC25.py<br>sudo dhclient wwan0</div></div>
+      <div class="qs-step"><div class="qs-num">// STEP 04</div><div class="qs-title" data-i18n="qs4_title">Deploy Gateway</div><p class="qs-desc" data-i18n="qs4_desc">Start cpcd for Zigbee, run LoRa Python examples, and configure your cloud endpoint.</p><div class="qs-code">sudo cpcd --config ...<br>python3 lora_send.py</div></div>
     </div>
   </div>
 </section>
-
 <hr class="divider">
 
-<!-- WIKI -->
-<section id="wiki" style="background: var(--bg2);">
+<!-- ════════════════ WIKI ════════════════ -->
+<section class="wiki-section" id="wiki">
   <div class="section-inner">
-    <div class="section-label">Documentation</div>
-    <h2 class="section-title">Wiki & Reference</h2>
-    <p class="section-sub">Comprehensive documentation for all modules, interfaces, and configuration options.</p>
+    <div class="section-label" data-i18n="wiki_label">Documentation</div>
+    <h2 class="section-title" data-i18n="wiki_title">Wiki & Reference</h2>
+    <p class="section-sub" data-i18n="wiki_sub">Comprehensive documentation for all modules, interfaces, and configuration options.</p>
     <div class="wiki-grid">
       <div class="wiki-nav">
-        <div class="wiki-nav-title">Contents</div>
-        <div class="wiki-link active" onclick="showWiki('overview')"><span class="dot"></span> Overview</div>
+        <div class="wiki-nav-title" data-i18n="wiki_contents">Contents</div>
+        <div class="wiki-link active" onclick="showWiki('overview')"><span class="dot"></span> <span data-i18n="wl_overview">Overview</span></div>
         <div class="wiki-link" onclick="showWiki('4g')"><span class="dot"></span> 4G LTE (EC25-E)</div>
         <div class="wiki-link" onclick="showWiki('lora')"><span class="dot"></span> LoRaWAN (LR62E)</div>
         <div class="wiki-link" onclick="showWiki('zigbee')"><span class="dot"></span> Zigbee (MGM210P)</div>
         <div class="wiki-link" onclick="showWiki('rs485')"><span class="dot"></span> RS485 / Modbus</div>
-        <div class="wiki-link" onclick="showWiki('ai')"><span class="dot"></span> Hailo-8 AI Module</div>
+        <div class="wiki-link" onclick="showWiki('ai')"><span class="dot"></span> Hailo-8 AI</div>
         <div class="wiki-link" onclick="showWiki('gpio')"><span class="dot"></span> GPIO / Pinout</div>
-        <div class="wiki-link" onclick="showWiki('power')"><span class="dot"></span> Power & Thermal</div>
-        <div class="wiki-link" onclick="showWiki('github')"><span class="dot"></span> GitHub & Contributing</div>
+        <div class="wiki-link" onclick="showWiki('power')"><span class="dot"></span> <span data-i18n="wl_power">Power & Thermal</span></div>
+        <div class="wiki-link" onclick="showWiki('github')"><span class="dot"></span> GitHub</div>
       </div>
       <div class="wiki-content">
 
         <div class="wiki-page active" id="wiki-overview">
-          <div class="wiki-page-title">Overview</div>
+          <div class="wiki-page-title" data-i18n="wo_title">Overview</div>
           <div class="wiki-page-sub">HBQ Industrial Base Board for Raspberry Pi CM5 · Rev 2.1</div>
-          <p class="wiki-p">The HBQ CM5 Industrial IoT Gateway is a carrier board designed for the Raspberry Pi Compute Module 5 (CM5). It provides a comprehensive set of industrial communication interfaces—4G LTE, LoRaWAN, Zigbee, RS485—on a single compact board suitable for industrial IoT deployments, smart building automation, agriculture, and edge AI applications.</p>
-          <div class="wiki-h2">Key Features</div>
-          <p class="wiki-p">• <strong>Quectel EC25-E</strong>: LTE Cat 4 modem, onboard, with nano SIM slot<br>
-          • <strong>LR62E LoRa</strong>: Mini-PCIe LoRaWAN module (SX1262-compatible)<br>
-          • <strong>MGM210P / MGM12P Zigbee</strong>: Silicon Labs NCP CPC on bottom side<br>
-          • <strong>RS485</strong>: Industrial serial for Modbus RTU/ASCII<br>
-          • <strong>M.2 B-Key</strong>: Expandable with NVMe or AI accelerator (M-Key optional)<br>
-          • <strong>Dual MIPI CSI/DSI</strong>: Dual camera / display interfaces<br>
-          • <strong>1000M Ethernet</strong>: Trxcom TRJG052GHENL GbE controller</p>
-          <div class="success-box"><strong>✓ Open Source:</strong> Full schematics and Python/C examples available at <a href="https://github.com/hbqtechnologycompany/HBQ_Industrial_Base_Board_For_Pi_CM5" style="color:var(--accent2)">github.com/hbqtechnologycompany</a>. MIT licensed.</div>
-          <div class="wiki-h2">Repository Structure</div>
+          <p class="wiki-p" data-i18n="wo_p1">The HBQ CM5 Industrial IoT Gateway is a carrier board designed for the Raspberry Pi Compute Module 5 (CM5). It provides a comprehensive set of industrial communication interfaces—4G LTE, LoRaWAN, Zigbee, RS485—on a single compact board suitable for industrial IoT deployments, smart building automation, agriculture, and edge AI applications.</p>
+          <div class="wiki-h2" data-i18n="wo_h1">Key Features</div>
+          <p class="wiki-p" data-i18n="wo_feat">• <strong>Quectel EC25-E</strong>: LTE Cat 4 modem, onboard, with nano SIM slot<br>• <strong>LR62E LoRa</strong>: Mini-PCIe LoRaWAN module (SX1262-compatible)<br>• <strong>MGM210P / MGM12P Zigbee</strong>: Silicon Labs NCP CPC on bottom side<br>• <strong>RS485</strong>: Industrial serial for Modbus RTU/ASCII<br>• <strong>M.2 B-Key</strong>: Expandable with NVMe or AI accelerator (M-Key optional)<br>• <strong>Dual MIPI CSI/DSI</strong>: Dual camera / display interfaces<br>• <strong>1000M Ethernet</strong>: Trxcom TRJG052GHENL GbE controller</p>
+          <div class="success-box"><strong>✓ Open Source:</strong> <span data-i18n="wo_oss">Full schematics and Python/C examples available at </span><a href="https://github.com/hbqtechnologycompany/HBQ_Industrial_Base_Board_For_Pi_CM5" style="color:var(--accent2)">github.com/hbqtechnologycompany</a>. MIT licensed.</div>
+          <div class="wiki-h2" data-i18n="wo_h2">Repository Structure</div>
           <div class="code-block">
 <span class="comment"># GitHub: HBQ_Industrial_Base_Board_For_Pi_CM5</span><br>
-├── EC25-E/          <span class="comment"># 4G LTE scripts & AT command docs</span><br>
-├── LR62E/           <span class="comment"># LoRa Python examples</span><br>
-├── MGM12P.../       <span class="comment"># Zigbee NCP CPC build logs</span><br>
-├── MGM210P.../      <span class="comment"># Zigbee MG21 docs</span><br>
-├── Schematic/       <span class="comment"># Public schematic PDF</span><br>
-└── HW/              <span class="comment"># Board photos</span>
+├── EC25-E/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># 4G LTE scripts & AT command docs</span><br>
+├── LR62E/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># LoRa Python examples</span><br>
+├── MGM12P.../&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Zigbee NCP CPC build logs</span><br>
+├── MGM210P.../&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Zigbee MG21 docs</span><br>
+├── Schematic/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Public schematic PDF</span><br>
+└── HW/&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Board photos</span>
           </div>
         </div>
 
         <div class="wiki-page" id="wiki-4g">
           <div class="wiki-page-title">4G LTE — EC25-E</div>
           <div class="wiki-page-sub">Quectel EC25-E · LTE Cat 4 · 150/50 Mbps</div>
-          <p class="wiki-p">The Quectel EC25-E is soldered directly on the HBQ board and connected to the CM5 via USB. A nano SIM card tray is accessible from the top side.</p>
-          <div class="wiki-h2">Power On / Reset</div>
+          <p class="wiki-p" data-i18n="w4g_p1">The Quectel EC25-E is soldered directly on the HBQ board and connected to the CM5 via USB. A nano SIM card tray is accessible from the top side.</p>
+          <div class="wiki-h2" data-i18n="w4g_h1">Power On / Reset</div>
           <div class="code-block">
 <span class="comment"># Power on the EC25-E module</span><br>
 <span class="cmd">python3</span> EC25-E/turn_on_EC25.py<br><br>
 <span class="comment"># Reset if unresponsive</span><br>
 <span class="cmd">python3</span> EC25-E/reset_EC25.py
           </div>
-          <div class="wiki-h2">Establish 4G Data Session</div>
+          <div class="wiki-h2" data-i18n="w4g_h2">Establish 4G Data Session</div>
           <div class="code-block">
 <span class="comment"># Check modem detected</span><br>
 <span class="cmd">ls</span> /dev/ttyUSB*<br><br>
-<span class="comment"># Send AT command to start PPP data call</span><br>
-AT+QCRMCALL=1,1<br><br>
-<span class="comment"># Bring up wwan0 interface</span><br>
+AT+QCRMCALL=1,1&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Start data call</span><br>
 <span class="cmd">sudo</span> ip link set wwan0 up<br>
-<span class="cmd">sudo</span> dhclient wwan0<br><br>
-<span class="comment"># Verify connectivity</span><br>
+<span class="cmd">sudo</span> dhclient wwan0<br>
 <span class="cmd">ping</span> -I wwan0 8.8.8.8
           </div>
-          <div class="note-box"><strong>⚠ Note:</strong> The EC25-E requires a short power-on pulse via GPIO before the USB device appears. Always run <code>turn_on_EC25.py</code> first after boot.</div>
-          <div class="wiki-h2">Supported AT Commands</div>
-          <p class="wiki-p">Full AT command documentation is available in <code>EC25-E/doc/</code>. Common commands: <code>AT+COPS?</code> (network), <code>AT+CSQ</code> (signal), <code>AT+CREG?</code> (registration), <code>AT+QCFG</code> (configuration).</p>
+          <div class="note-box"><strong>⚠ Note:</strong> <span data-i18n="w4g_note">The EC25-E requires a short power-on pulse via GPIO before the USB device appears. Always run turn_on_EC25.py first after boot.</span></div>
         </div>
 
         <div class="wiki-page" id="wiki-lora">
           <div class="wiki-page-title">LoRaWAN — LR62E</div>
           <div class="wiki-page-sub">Wio-SX1262 · Mini-PCIe · SPI1</div>
-          <p class="wiki-p">The LR62E LoRa module plugs into the onboard Mini-PCIe slot and communicates with the CM5 via SPI1. Use it as a LoRa node or as part of a LoRaWAN gateway setup.</p>
-          <div class="wiki-h2">Enable SPI1 Overlay</div>
+          <p class="wiki-p" data-i18n="wlora_p1">The LR62E LoRa module plugs into the onboard Mini-PCIe slot and communicates with the CM5 via SPI1. Use it as a LoRa node or as part of a LoRaWAN gateway setup.</p>
+          <div class="wiki-h2" data-i18n="wlora_h1">Enable SPI1 Overlay</div>
           <div class="code-block">
 <span class="comment"># Add to /boot/firmware/config.txt</span><br>
 dtoverlay=spi1-3cs<br>
 dtparam=spi=on<br><br>
-<span class="comment"># Verify SPI devices after reboot</span><br>
-<span class="cmd">ls</span> /dev/spidev*
+<span class="cmd">ls</span> /dev/spidev*&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span class="comment"># Verify after reboot</span>
           </div>
-          <div class="wiki-h2">Python LoRa Send Example</div>
+          <div class="wiki-h2" data-i18n="wlora_h2">Python Send Example</div>
           <div class="code-block">
-<span class="comment"># From LR62E/ directory</span><br>
 <span class="cmd">cd</span> LR62E/<br>
 <span class="cmd">pip3 install</span> RPi.GPIO spidev<br>
 <span class="cmd">python3</span> lora_send.py
           </div>
-          <div class="success-box"><strong>✓ Range:</strong> LR62E supports up to 15 km line-of-sight with appropriate antenna. Use 868 MHz (EU) or 915 MHz (US/AS) depending on your region frequency plan.</div>
+          <div class="success-box"><strong>✓ Range:</strong> <span data-i18n="wlora_note">LR62E supports up to 15 km line-of-sight with appropriate antenna. Use 868 MHz (EU) or 915 MHz (US/AS) depending on your region.</span></div>
         </div>
 
         <div class="wiki-page" id="wiki-zigbee">
           <div class="wiki-page-title">Zigbee — MGM210P / MGM12P</div>
           <div class="wiki-page-sub">Silicon Labs · NCP CPC · Zigbee 3.0</div>
-          <p class="wiki-p">The Zigbee module (MGM210PA22JIA2R or MGM12P22F1024GA) is mounted on the bottom side of the board. It runs as a Network Co-Processor (NCP) and communicates with the CM5 via the CPC (Co-Processor Communication) protocol.</p>
-          <div class="wiki-h2">Build & Flash cpcd</div>
+          <p class="wiki-p" data-i18n="wzb_p1">The Zigbee module (MGM210PA22JIA2R or MGM12P22F1024GA) is mounted on the bottom side of the board. It runs as a Network Co-Processor (NCP) and communicates with the CM5 via the CPC protocol.</p>
+          <div class="wiki-h2" data-i18n="wzb_h1">Build & Flash cpcd</div>
           <div class="code-block">
-<span class="comment"># Build CPC daemon from Gecko SDK</span><br>
 <span class="cmd">cd</span> MGM12P22F1024GA-V4R/zigbeeNCP_CPC/<br>
 <span class="cmd">cmake</span> -B build -S cpcd<br>
-<span class="cmd">cmake</span> --build build<br><br>
-<span class="comment"># Run cpcd with your serial config</span><br>
+<span class="cmd">cmake</span> --build build<br>
 <span class="cmd">sudo</span> ./build/cpcd --config cpcd.conf
           </div>
-          <div class="wiki-h2">Zigbee Reset</div>
-          <p class="wiki-p">A dedicated hardware reset button is available on the top side of the board labeled <strong>Zigbee Module Reset Button</strong>. There is also a programming header (SWD/JTAG) for flashing custom Gecko SDK firmware.</p>
-          <div class="note-box"><strong>⚠ Note:</strong> Refer to <code>MGM12P22F1024GA-V4R/README.md</code> for full NCP build logs and version-specific Gecko SDK 4.4.6 references.</div>
+          <div class="note-box"><strong>⚠ Note:</strong> <span data-i18n="wzb_note">Refer to MGM12P22F1024GA-V4R/README.md for full NCP build logs and Gecko SDK 4.4.6 references.</span></div>
         </div>
 
         <div class="wiki-page" id="wiki-rs485">
           <div class="wiki-page-title">RS485 / Modbus</div>
           <div class="wiki-page-sub">Industrial 2-Wire · Modbus RTU/ASCII</div>
-          <p class="wiki-p">The onboard RS485 interface enables direct communication with industrial equipment such as PLCs, variable frequency drives, energy meters, flow sensors, and any Modbus RTU/ASCII compatible device.</p>
-          <div class="wiki-h2">Python Modbus Example</div>
+          <p class="wiki-p" data-i18n="wrs_p1">The onboard RS485 interface enables direct communication with industrial equipment such as PLCs, variable frequency drives, energy meters, flow sensors, and any Modbus RTU/ASCII compatible device.</p>
+          <div class="wiki-h2" data-i18n="wrs_h1">Python Modbus Example</div>
           <div class="code-block">
 <span class="cmd">pip3 install</span> pymodbus<br><br>
 from pymodbus.client import ModbusSerialClient<br><br>
 client = ModbusSerialClient(<br>
-&nbsp;&nbsp;method=<span class="str">'rtu'</span>,<br>
-&nbsp;&nbsp;port=<span class="str">'/dev/ttyAMA0'</span>,<br>
-&nbsp;&nbsp;baudrate=9600,<br>
-&nbsp;&nbsp;stopbits=1, bytesize=8, parity=<span class="str">'N'</span><br>
+&nbsp;&nbsp;method=<span class="str">'rtu'</span>, port=<span class="str">'/dev/ttyAMA0'</span>,<br>
+&nbsp;&nbsp;baudrate=9600, stopbits=1, bytesize=8, parity=<span class="str">'N'</span><br>
 )<br>
 result = client.read_holding_registers(0, 10, unit=1)
           </div>
-          <div class="success-box"><strong>✓ Use Case:</strong> Ideal for industrial energy monitoring, building management systems (BMS), Modbus sensor aggregation, and PLC integration without an external USB-RS485 adapter.</div>
+          <div class="success-box"><strong>✓ Use Case:</strong> <span data-i18n="wrs_note">Ideal for industrial energy monitoring, BMS, Modbus sensor aggregation, and PLC integration without an external USB-RS485 adapter.</span></div>
         </div>
 
         <div class="wiki-page" id="wiki-ai">
           <div class="wiki-page-title">Hailo-8 AI Accelerator</div>
           <div class="wiki-page-sub">26 TOPS · M.2 · Edge AI</div>
-          <p class="wiki-p">The HBQ CM5 Gateway supports the Hailo-8 AI accelerator module via the M.2 slot. This enables real-time AI inference at the edge without cloud dependency — ideal for computer vision, predictive maintenance, and smart surveillance.</p>
-          <div class="wiki-h2">Install HailoRT</div>
+          <p class="wiki-p" data-i18n="wai_p1">The HBQ CM5 Gateway supports the Hailo-8 AI accelerator module via the M.2 slot. This enables real-time AI inference at the edge without cloud dependency — ideal for computer vision, predictive maintenance, and smart surveillance.</p>
+          <div class="wiki-h2" data-i18n="wai_h1">Install HailoRT</div>
           <div class="code-block">
-<span class="comment"># Install HailoRT runtime</span><br>
-<span class="cmd">wget</span> https://hailo.ai/developer-zone/ <span class="comment">(registration required)</span><br>
-<span class="cmd">sudo dpkg</span> -i hailort_*.deb<br><br>
-<span class="comment"># Test detection</span><br>
+<span class="cmd">wget</span> https://hailo.ai/developer-zone/<br>
+<span class="cmd">sudo dpkg</span> -i hailort_*.deb<br>
 <span class="cmd">hailortcli</span> fw-control identify
           </div>
-          <div class="wiki-h2">AI Use Cases</div>
-          <p class="wiki-p">
-          • <strong>Object Detection</strong>: YOLOv5/v8 at 30+ FPS via dual CSI camera<br>
-          • <strong>Face Recognition</strong>: Real-time biometric access control<br>
-          • <strong>Anomaly Detection</strong>: Industrial predictive maintenance<br>
-          • <strong>Smart Counting</strong>: People / vehicle / object counting</p>
-          <div class="note-box"><strong>⚠ Note:</strong> Hailo-8 M.2 module is sold separately. Ensure M-Key is populated on your board variant.</div>
+          <div class="wiki-h2" data-i18n="wai_h2">AI Use Cases</div>
+          <p class="wiki-p" data-i18n="wai_cases">• <strong>Object Detection</strong>: YOLOv5/v8 at 30+ FPS<br>• <strong>Face Recognition</strong>: Real-time biometric access control<br>• <strong>Anomaly Detection</strong>: Industrial predictive maintenance<br>• <strong>Smart Counting</strong>: People / vehicle / object counting</p>
+          <div class="note-box"><strong>⚠ Note:</strong> <span data-i18n="wai_note">Hailo-8 M.2 module is sold separately. Ensure M-Key is populated on your board variant.</span></div>
         </div>
 
         <div class="wiki-page" id="wiki-gpio">
           <div class="wiki-page-title">GPIO / Pinout Reference</div>
-          <div class="wiki-page-sub">Key GPIO assignments for CM5 carrier</div>
+          <div class="wiki-page-sub" data-i18n="wgpio_sub">Key GPIO assignments for CM5 carrier</div>
           <table class="pin-table">
-            <tr><th>Signal</th><th>GPIO (BCM)</th><th>Direction</th><th>Description</th></tr>
-            <tr><td>EC25 Power Key</td><td class="mono">GPIO4</td><td class="io-out">OUT</td><td>Pulse LOW to power on EC25-E</td></tr>
-            <tr><td>EC25 Reset</td><td class="mono">GPIO17</td><td class="io-out">OUT</td><td>Active LOW reset for EC25</td></tr>
-            <tr><td>Zigbee Reset</td><td class="mono">GPIO27</td><td class="io-out">OUT</td><td>Hardware reset for Zigbee NCP</td></tr>
+            <tr><th data-i18n="gpio_sig">Signal</th><th>GPIO (BCM)</th><th data-i18n="gpio_dir">Direction</th><th data-i18n="gpio_desc">Description</th></tr>
+            <tr><td>EC25 Power Key</td><td class="mono">GPIO4</td><td class="io-out">OUT</td><td data-i18n="gpio_r1">Pulse LOW to power on EC25-E</td></tr>
+            <tr><td>EC25 Reset</td><td class="mono">GPIO17</td><td class="io-out">OUT</td><td data-i18n="gpio_r2">Active LOW reset for EC25</td></tr>
+            <tr><td>Zigbee Reset</td><td class="mono">GPIO27</td><td class="io-out">OUT</td><td data-i18n="gpio_r3">Hardware reset for Zigbee NCP</td></tr>
             <tr><td>SPI1 CLK</td><td class="mono">GPIO21</td><td class="io-out">OUT</td><td>LoRa SPI1 clock</td></tr>
             <tr><td>SPI1 MOSI</td><td class="mono">GPIO20</td><td class="io-out">OUT</td><td>LoRa SPI1 MOSI</td></tr>
             <tr><td>SPI1 MISO</td><td class="mono">GPIO19</td><td class="io-in">IN</td><td>LoRa SPI1 MISO</td></tr>
-            <tr><td>SPI1 CS0</td><td class="mono">GPIO18</td><td class="io-out">OUT</td><td>LoRa chip select</td></tr>
-            <tr><td>RS485 DE/RE</td><td class="mono">GPIO24</td><td class="io-out">OUT</td><td>RS485 direction control</td></tr>
-            <tr><td>FAN PWM</td><td class="mono">GPIO12</td><td class="io-out">OUT</td><td>5V fan speed control</td></tr>
-            <tr><td>3.3V Power</td><td class="mono">Pin 1/17</td><td class="io-pwr">PWR</td><td>3.3V supply output</td></tr>
-            <tr><td>5V Power</td><td class="mono">Pin 2/4</td><td class="io-pwr">PWR</td><td>5V supply output</td></tr>
+            <tr><td>SPI1 CS0</td><td class="mono">GPIO18</td><td class="io-out">OUT</td><td data-i18n="gpio_r7">LoRa chip select</td></tr>
+            <tr><td>RS485 DE/RE</td><td class="mono">GPIO24</td><td class="io-out">OUT</td><td data-i18n="gpio_r8">RS485 direction control</td></tr>
+            <tr><td>FAN PWM</td><td class="mono">GPIO12</td><td class="io-out">OUT</td><td data-i18n="gpio_r9">5V fan speed control</td></tr>
+            <tr><td>3.3V Power</td><td class="mono">Pin 1/17</td><td class="io-pwr">PWR</td><td data-i18n="gpio_r10">3.3V supply output</td></tr>
+            <tr><td>5V Power</td><td class="mono">Pin 2/4</td><td class="io-pwr">PWR</td><td data-i18n="gpio_r11">5V supply output</td></tr>
           </table>
-          <div class="note-box"><strong>⚠ Note:</strong> Exact GPIO numbers may vary by board revision. Always verify against the public schematic: <code>Schematic/Gateway_CM5_Schematic_public.pdf</code></div>
+          <div class="note-box"><strong>⚠ Note:</strong> <span data-i18n="wgpio_note">Exact GPIO numbers may vary by board revision. Always verify against the public schematic: Schematic/Gateway_CM5_Schematic_public.pdf</span></div>
         </div>
 
         <div class="wiki-page" id="wiki-power">
-          <div class="wiki-page-title">Power & Thermal</div>
-          <div class="wiki-page-sub">Power input, consumption, and cooling</div>
-          <div class="wiki-h2">Power Input</div>
-          <p class="wiki-p">The board is powered via a DC barrel jack. Recommended input: <strong>12V DC</strong> with at least 3A capacity when all modules are active (4G + LoRa + Zigbee + CM5).</p>
-          <div class="wiki-h2">Estimated Power Consumption</div>
+          <div class="wiki-page-title" data-i18n="wpwr_title">Power & Thermal</div>
+          <div class="wiki-page-sub" data-i18n="wpwr_sub">Power input, consumption, and cooling</div>
+          <div class="wiki-h2" data-i18n="wpwr_h1">Power Input</div>
+          <p class="wiki-p" data-i18n="wpwr_p1">The board is powered via a DC barrel jack. Recommended input: <strong>12V DC</strong> with at least 3A capacity when all modules are active (4G + LoRa + Zigbee + CM5).</p>
+          <div class="wiki-h2" data-i18n="wpwr_h2">Estimated Power Consumption</div>
           <table class="pin-table">
-            <tr><th>Configuration</th><th>Approx. Current @ 12V</th></tr>
-            <tr><td>CM5 idle</td><td>~0.4A</td></tr>
-            <tr><td>CM5 + 4G LTE active</td><td>~1.2A</td></tr>
-            <tr><td>All modules active</td><td>~1.8–2.2A</td></tr>
-            <tr><td>With Hailo-8 inference</td><td>~2.5–3.0A</td></tr>
+            <tr><th data-i18n="pwr_config">Configuration</th><th data-i18n="pwr_current">Approx. Current @ 12V</th></tr>
+            <tr><td data-i18n="pwr_r1">CM5 idle</td><td>~0.4A</td></tr>
+            <tr><td data-i18n="pwr_r2">CM5 + 4G LTE active</td><td>~1.2A</td></tr>
+            <tr><td data-i18n="pwr_r3">All modules active</td><td>~1.8–2.2A</td></tr>
+            <tr><td data-i18n="pwr_r4">With Hailo-8 inference</td><td>~2.5–3.0A</td></tr>
           </table>
-          <div class="wiki-h2">Thermal Management</div>
-          <p class="wiki-p">A large passive heatsink is included on the CM5 area. A 5V PWM fan connector is available for active cooling in high-ambient or high-load deployments. Use <code>raspi-config</code> or a systemd service to manage fan speed via GPIO12.</p>
-          <div class="success-box"><strong>✓ Industrial Tip:</strong> For 24/7 operation in enclosures, add a 40mm 5V fan connected to the fan header. Set GPIO12 HIGH to run at full speed or use PWM for temperature-based control.</div>
+          <div class="wiki-h2" data-i18n="wpwr_h3">Thermal Management</div>
+          <p class="wiki-p" data-i18n="wpwr_p2">A large passive heatsink is included on the CM5 area. A 5V PWM fan connector is available for active cooling in high-ambient or high-load deployments.</p>
+          <div class="success-box"><strong>✓ Industrial Tip:</strong> <span data-i18n="wpwr_tip">For 24/7 operation in enclosures, add a 40mm 5V fan connected to the fan header. Set GPIO12 HIGH to run at full speed or use PWM for temperature-based control.</span></div>
         </div>
 
         <div class="wiki-page" id="wiki-github">
-          <div class="wiki-page-title">GitHub & Contributing</div>
+          <div class="wiki-page-title" data-i18n="wgh_title">GitHub & Contributing</div>
           <div class="wiki-page-sub">Open source under MIT License</div>
-          <div class="wiki-h2">Repository</div>
-          <div class="code-block">
-<span class="cmd">git clone</span> https://github.com/hbqtechnologycompany/<br>&nbsp;&nbsp;HBQ_Industrial_Base_Board_For_Pi_CM5.git
-          </div>
-          <div class="wiki-h2">How to Contribute</div>
-          <p class="wiki-p">1. Fork the repo and create a branch: <code>feat/...</code>, <code>fix/...</code>, <code>docs/...</code><br>
-          2. Make focused changes with clear commit messages<br>
-          3. Update README or docs if behavior changes<br>
-          4. Open a Pull Request with description, motivation, and testing steps</p>
-          <div class="wiki-h2">Reporting Issues</div>
-          <p class="wiki-p">Use GitHub Issues with: OS version, board revision, module type, full logs, and steps to reproduce. For security issues, email <strong>contact@hbqsolution.com</strong> privately — do not open public issues.</p>
+          <div class="wiki-h2" data-i18n="wgh_h1">Repository</div>
+          <div class="code-block"><span class="cmd">git clone</span> https://github.com/hbqtechnologycompany/<br>&nbsp;&nbsp;HBQ_Industrial_Base_Board_For_Pi_CM5.git</div>
+          <div class="wiki-h2" data-i18n="wgh_h2">How to Contribute</div>
+          <p class="wiki-p" data-i18n="wgh_p1">1. Fork the repo and create a branch: feat/..., fix/..., docs/...<br>2. Make focused changes with clear commit messages<br>3. Update README or docs if behavior changes<br>4. Open a Pull Request with description, motivation, and testing steps</p>
+          <div class="wiki-h2" data-i18n="wgh_h3">Reporting Issues</div>
+          <p class="wiki-p" data-i18n="wgh_p2">Use GitHub Issues with: OS version, board revision, module type, full logs, and steps to reproduce. For security issues, email <strong>contact@hbqsolution.com</strong> privately.</p>
           <div class="wiki-h2">License</div>
-          <p class="wiki-p">This project is MIT licensed. You are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies. Copyright (c) 2025 HBQ Technology.</p>
+          <p class="wiki-p" data-i18n="wgh_p3">This project is MIT licensed. You are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies. Copyright (c) 2025 HBQ Technology.</p>
         </div>
-
       </div>
     </div>
   </div>
 </section>
-
 <hr class="divider">
 
-<!-- CTA / BUY -->
+<!-- ════════════════ CTA ════════════════ -->
 <section class="cta-section" id="buy">
-  <div class="section-label" style="justify-content:center; display:flex;">Get Yours</div>
-  <h2 class="cta-title">Ready to Deploy?</h2>
-  <p class="cta-sub">Order the HBQ CM5 Industrial IoT Gateway with your choice of modules. International shipping available.</p>
+  <div class="section-label" style="justify-content:center;display:flex;" data-i18n="cta_label">Get Yours</div>
+  <h2 class="cta-title" data-i18n="cta_title">Ready to Deploy?</h2>
+  <p class="cta-sub" data-i18n="cta_sub">Order the HBQ CM5 Industrial IoT Gateway with your choice of modules. International shipping available.</p>
   <div class="cta-actions">
-    <a href="https://store.hbqsolution.com/" class="btn-primary">🛒 Visit HBQ Store</a>
-    <a href="https://github.com/hbqtechnologycompany/HBQ_Industrial_Base_Board_For_Pi_CM5" class="btn-secondary">⭐ Star on GitHub</a>
-    <a href="mailto:contact@hbqsolution.com" class="btn-secondary">✉ Contact Sales</a>
+    <a href="https://store.hbqsolution.com/" class="btn-primary" data-i18n="cta_btn1">🛒 Visit HBQ Store</a>
+    <a href="https://github.com/hbqtechnologycompany/HBQ_Industrial_Base_Board_For_Pi_CM5" class="btn-secondary" data-i18n="cta_btn2">⭐ Star on GitHub</a>
+    <a href="mailto:contact@hbqsolution.com" class="btn-secondary" data-i18n="cta_btn3">✉ Contact Sales</a>
   </div>
   <div class="contact-grid">
-    <div class="contact-card">
-      <div class="icon">📧</div>
-      <div class="c-label">Email</div>
-      <div class="c-val"><a href="mailto:contact@hbqsolution.com">contact@hbqsolution.com</a></div>
-    </div>
-    <div class="contact-card">
-      <div class="icon">📱</div>
-      <div class="c-label">Phone / Zalo (Vietnam)</div>
-      <div class="c-val">(+84) 035 719 1643<br>(+84) 094 850 7979</div>
-    </div>
-    <div class="contact-card">
-      <div class="icon">🌐</div>
-      <div class="c-label">Official Store</div>
-      <div class="c-val"><a href="https://store.hbqsolution.com/">store.hbqsolution.com</a></div>
-    </div>
+    <div class="contact-card"><div class="icon">📧</div><div class="c-label">Email</div><div class="c-val"><a href="mailto:contact@hbqsolution.com">contact@hbqsolution.com</a></div></div>
+    <div class="contact-card"><div class="icon">📱</div><div class="c-label" data-i18n="contact_phone">Phone / Zalo (Vietnam)</div><div class="c-val">(+84) 035 719 1643<br>(+84) 094 850 7979</div></div>
+    <div class="contact-card"><div class="icon">🌐</div><div class="c-label" data-i18n="contact_store">Official Store</div><div class="c-val"><a href="https://store.hbqsolution.com/">store.hbqsolution.com</a></div></div>
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- ════════════════ FOOTER ════════════════ -->
 <footer>
   <div class="footer-logo">HBQ TECHNOLOGY</div>
   <div class="footer-text">© 2025 HBQ Technology · MIT Licensed · Made in Vietnam 🇻🇳</div>
   <div class="footer-links">
     <a href="https://github.com/hbqtechnologycompany/HBQ_Industrial_Base_Board_For_Pi_CM5">GitHub</a>
-    <a href="https://store.hbqsolution.com/">Store</a>
-    <a href="mailto:contact@hbqsolution.com">Contact</a>
+    <a href="https://store.hbqsolution.com/" data-i18n="footer_store">Store</a>
+    <a href="mailto:contact@hbqsolution.com" data-i18n="footer_contact">Contact</a>
   </div>
 </footer>
 
+<!-- ════════════════ i18n + JS ════════════════ -->
 <script>
+// ── Translation dictionary ──────────────────────────────────────────────────
+const TRANSLATIONS = {
+  en: {
+    nav_compare:"Compare", nav_features:"Features", nav_specs:"Specs",
+    nav_modules:"Modules", nav_wiki:"Wiki", nav_buy:"Buy", nav_order:"Order Now",
+    hero_badge:"Industrial IoT Gateway · Rev 2.1",
+    hero_desc:"Raspberry Pi CM5-powered industrial carrier board with built-in 4G LTE (Quectel EC25-E), LoRaWAN (LR62E), Zigbee (Silicon Labs MGM210P), RS485, and M.2 expansion. The ultimate multi-protocol IoT edge gateway for industrial deployments.",
+    hero_btn_order:"Order Now", hero_btn_docs:"Documentation",
+    stat_lte:"LTE Cat 4", stat_proto:"IoT Protocols", stat_eth:"Ethernet", stat_oss:"Open Source",
+    vs_label:"Comparison", vs_title:"HBQ CM5 vs Competitors",
+    vs_sub:"See why the HBQ Industrial Gateway delivers more capabilities for demanding IoT deployments than comparable carrier boards.",
+    vs_o1t:"4G LTE Cat 4 (Quectel EC25-E)", vs_o1s:"Built-in cellular, no external modem needed",
+    vs_o2t:"LoRaWAN Module (LR62E)",         vs_o2s:"Mini-PCIe slot — swap or upgrade anytime",
+    vs_o3t:"Zigbee MGM210P / MGM12P",        vs_o3s:"Silicon Labs, enterprise-grade mesh networking",
+    vs_o4t:"RS485 Industrial Bus",            vs_o4s:"Native Modbus/RTU for industrial sensors",
+    vs_o5t:"M.2 B-Key + M-Key (Optional)",   vs_o5s:"Dual M.2 expansion for NVMe or AI modules",
+    vs_o6t:"Dual MIPI CSI (Camera)",          vs_o6s:"Vision AI capabilities out of the box",
+    vs_o7t:"Hailo-8 AI Accelerator Ready",   vs_o7s:"Plug-in M.2 NPU for edge inference",
+    vs_o8t:"Open Source Hardware (MIT)",      vs_o8s:"Full schematics + code on GitHub",
+    vs_o9t:"Vietnam-based support",           vs_o9s:"Zalo/Phone support (+84) 035 719 1643",
+    vs_t1t:"4G/5G Option",      vs_t1s:"Via M.2 slot (module sold separately)",
+    vs_t2t:"No LoRa",           vs_t2s:"No onboard LoRaWAN capability",
+    vs_t3t:"No Zigbee",         vs_t3s:"Zigbee mesh not supported",
+    vs_t4t:"No RS485",          vs_t4s:"Industrial bus not included",
+    vs_t5t:"Single M.2 Key",    vs_t5s:"Less expansion flexibility",
+    vs_t6t:"Dual ETH",          vs_t6s:"Two Gigabit Ethernet ports",
+    vs_t7t:"AI via M.2 only",   vs_t7s:"No dedicated AI slot layout",
+    vs_t8t:"Closed Design",     vs_t8s:"Limited public schematic access",
+    vs_t9t:"China-based support only", vs_t9s:"No local SEA region support",
+    feat_label:"Capabilities",
+    feat_title:"Everything You Need,<br>Nothing You Don't",
+    feat_sub:"The HBQ CM5 Gateway integrates the most critical IoT communication protocols on a single industrial-grade carrier board.",
+    f1_title:"4G LTE Cat 4", f1_desc:"Quectel EC25-E module soldered directly on board. Supports download speeds up to 150 Mbps / upload 50 Mbps. SIM card slot included. AT command interface via USB/UART.",
+    f2_title:"LoRaWAN Gateway", f2_desc:"LR62E LoRa module via Mini-PCIe (Wio-SX1262 compatible). Long-range, low-power communication up to 15 km line-of-sight. Ideal for sensor networks and smart agriculture.",
+    f3_title:"Zigbee Mesh Network", f3_desc:"Silicon Labs MGM210P / MGM12P NCP module. Full Zigbee 3.0 support via CPC protocol. Control hundreds of smart home and industrial Zigbee devices.",
+    f4_title:"RS485 Industrial Bus", f4_desc:"Native RS485 interface for Modbus RTU/ASCII protocols. Connect PLCs, inverters, energy meters, and industrial sensors directly — no external converter required.",
+    f5_title:"AI-Ready (Hailo-8)", f5_desc:"M.2 slot supports Hailo-8 AI accelerator. Run real-time object detection, facial recognition, and anomaly detection at the edge with 26 TOPS performance.",
+    f6_title:"Dual MIPI CSI Camera", f6_desc:"Two MIPI CSI/DSI interfaces for simultaneous dual-camera operation. Perfect for stereo vision, multi-angle surveillance, and AI vision applications.",
+    f7_title:"Gigabit Ethernet", f7_desc:"1000Base-T Ethernet port (Trxcom TRJG052GHENL) for reliable wired connectivity. Stable network backbone for gateway applications with high data throughput.",
+    f8_title:"Rich I/O Interfaces", f8_desc:"SPI, UART, I2C, 2× USB, USB Type-C, HDMI, SD Card, FAN connector, and DC power jack. Everything you need for peripheral expansion and system integration.",
+    f9_title:"Open Source (MIT)", f9_desc:"Full schematics, Python examples, and firmware on GitHub. MIT licensed — use freely in your commercial products. Active community and manufacturer support.",
+    spec_label:"Technical Specifications", spec_title:"Full Specifications",
+    spec_sub:"Complete hardware specifications for the HBQ Industrial Base Board for Raspberry Pi CM5 Rev 2.1.",
+    sg1:"Core Platform", sg2:"Wireless Connectivity", sg3:"Wired Interfaces",
+    sg4:"Expansion & Storage", sg5:"Power & Mechanical", sg6:"Software & License",
+    s1k:"Processor Module", s1v:"(sold separately)", s2k:"Board Revision",
+    s3k:"Zigbee Standard", s4v:"Nano SIM (push-pull tray)", s5v:"1× RS485 (industrial 2-wire)",
+    s6v:"Optional (NVMe / AI accelerator)", s7v:"1× for LoRaWAN module",
+    s8k:"Power Input", s9k:"Indicators", s9v:"System status LEDs",
+    s10k:"Zigbee Reset", s10v:"Dedicated hardware reset button",
+    s11k:"Zigbee Prog Port", s12k:"Schematic", s12v:"Public PDF on GitHub",
+    s13k:"Examples", s14k:"Certifications", s15k:"Support",
+    mod_label:"Hardware Modules", mod_title:"Modular by Design",
+    mod_sub:"Each communication module is purpose-built for its protocol. Swap, upgrade, or combine to match your exact deployment needs.",
+    m1_name:"4G LTE Module", m1_desc:"LTE Cat 4 with 150/50 Mbps. FCC/CE/UKCA certified. Supports global LTE bands. Control via AT commands on USB/UART.",
+    m2_name:"LoRaWAN Module", m2_desc:"Mini-PCIe form factor. Long range up to 15 km LoS. Low power sensor gateway. SPI interface via SPI1 overlay.",
+    m3_name:"Zigbee Module", m3_desc:"Bottom-side mounted. Zigbee 3.0 NCP via CPC. Build full mesh coordinator with cpcd daemon. Dedicated reset + programming port.",
+    m4_name:"Hailo-8 AI Accelerator", m4_desc:"Drop-in M.2 AI NPU. Enables real-time object detection, face recognition, and anomaly detection at the edge without cloud dependency.",
+    diag_label:"System Architecture", diag_title:"Block Diagram",
+    diag_sub:"The CM5 module sits at the heart of the gateway, managing all communication modules and I/O peripherals.",
+    qs_label:"Getting Started", qs_title:"Up & Running in Minutes",
+    qs_sub:"From unboxing to a live 4G connection with LoRa and Zigbee active — follow these steps.",
+    qs1_title:"Flash OS & Boot",    qs1_desc:"Flash Raspberry Pi OS (64-bit) to CM5 eMMC or SD card using rpiboot + Imager.",
+    qs2_title:"Enable Overlays",    qs2_desc:"Enable SPI1 for LoRa and configure GPIO for 4G power control in /boot/config.txt.",
+    qs3_title:"Power On 4G",        qs3_desc:"Run the EC25 power-on script and bring up the wwan0 interface for cellular data.",
+    qs4_title:"Deploy Gateway",     qs4_desc:"Start cpcd for Zigbee, run LoRa Python examples, and configure your cloud endpoint.",
+    wiki_label:"Documentation", wiki_title:"Wiki & Reference",
+    wiki_sub:"Comprehensive documentation for all modules, interfaces, and configuration options.",
+    wiki_contents:"Contents", wl_overview:"Overview", wl_power:"Power & Thermal",
+    wo_title:"Overview", wo_p1:"The HBQ CM5 Industrial IoT Gateway is a carrier board designed for the Raspberry Pi Compute Module 5 (CM5). It provides a comprehensive set of industrial communication interfaces—4G LTE, LoRaWAN, Zigbee, RS485—on a single compact board suitable for industrial IoT deployments, smart building automation, agriculture, and edge AI applications.",
+    wo_h1:"Key Features",
+    wo_feat:"• <strong>Quectel EC25-E</strong>: LTE Cat 4 modem, onboard, with nano SIM slot<br>• <strong>LR62E LoRa</strong>: Mini-PCIe LoRaWAN module (SX1262-compatible)<br>• <strong>MGM210P / MGM12P Zigbee</strong>: Silicon Labs NCP CPC on bottom side<br>• <strong>RS485</strong>: Industrial serial for Modbus RTU/ASCII<br>• <strong>M.2 B-Key</strong>: Expandable with NVMe or AI accelerator (M-Key optional)<br>• <strong>Dual MIPI CSI/DSI</strong>: Dual camera / display interfaces<br>• <strong>1000M Ethernet</strong>: Trxcom TRJG052GHENL GbE controller",
+    wo_oss:"Full schematics and Python/C examples available at ", wo_h2:"Repository Structure",
+    w4g_p1:"The Quectel EC25-E is soldered directly on the HBQ board and connected to the CM5 via USB. A nano SIM card tray is accessible from the top side.",
+    w4g_h1:"Power On / Reset", w4g_h2:"Establish 4G Data Session",
+    w4g_note:"The EC25-E requires a short power-on pulse via GPIO before the USB device appears. Always run turn_on_EC25.py first after boot.",
+    wlora_p1:"The LR62E LoRa module plugs into the onboard Mini-PCIe slot and communicates with the CM5 via SPI1. Use it as a LoRa node or as part of a LoRaWAN gateway setup.",
+    wlora_h1:"Enable SPI1 Overlay", wlora_h2:"Python Send Example",
+    wlora_note:"LR62E supports up to 15 km line-of-sight with appropriate antenna. Use 868 MHz (EU) or 915 MHz (US/AS) depending on your region.",
+    wzb_p1:"The Zigbee module (MGM210PA22JIA2R or MGM12P22F1024GA) is mounted on the bottom side of the board. It runs as a Network Co-Processor (NCP) and communicates with the CM5 via the CPC protocol.",
+    wzb_h1:"Build & Flash cpcd",
+    wzb_note:"Refer to MGM12P22F1024GA-V4R/README.md for full NCP build logs and Gecko SDK 4.4.6 references.",
+    wrs_p1:"The onboard RS485 interface enables direct communication with industrial equipment such as PLCs, variable frequency drives, energy meters, flow sensors, and any Modbus RTU/ASCII compatible device.",
+    wrs_h1:"Python Modbus Example",
+    wrs_note:"Ideal for industrial energy monitoring, BMS, Modbus sensor aggregation, and PLC integration without an external USB-RS485 adapter.",
+    wai_p1:"The HBQ CM5 Gateway supports the Hailo-8 AI accelerator module via the M.2 slot. This enables real-time AI inference at the edge without cloud dependency — ideal for computer vision, predictive maintenance, and smart surveillance.",
+    wai_h1:"Install HailoRT", wai_h2:"AI Use Cases",
+    wai_cases:"• <strong>Object Detection</strong>: YOLOv5/v8 at 30+ FPS<br>• <strong>Face Recognition</strong>: Real-time biometric access control<br>• <strong>Anomaly Detection</strong>: Industrial predictive maintenance<br>• <strong>Smart Counting</strong>: People / vehicle / object counting",
+    wai_note:"Hailo-8 M.2 module is sold separately. Ensure M-Key is populated on your board variant.",
+    wgpio_sub:"Key GPIO assignments for CM5 carrier",
+    gpio_sig:"Signal", gpio_dir:"Direction", gpio_desc:"Description",
+    gpio_r1:"Pulse LOW to power on EC25-E", gpio_r2:"Active LOW reset for EC25",
+    gpio_r3:"Hardware reset for Zigbee NCP", gpio_r7:"LoRa chip select",
+    gpio_r8:"RS485 direction control", gpio_r9:"5V fan speed control",
+    gpio_r10:"3.3V supply output", gpio_r11:"5V supply output",
+    wgpio_note:"Exact GPIO numbers may vary by board revision. Always verify against the public schematic: Schematic/Gateway_CM5_Schematic_public.pdf",
+    wpwr_title:"Power & Thermal", wpwr_sub:"Power input, consumption, and cooling",
+    wpwr_h1:"Power Input", wpwr_p1:"The board is powered via a DC barrel jack. Recommended input: <strong>12V DC</strong> with at least 3A capacity when all modules are active (4G + LoRa + Zigbee + CM5).",
+    wpwr_h2:"Estimated Power Consumption",
+    pwr_config:"Configuration", pwr_current:"Approx. Current @ 12V",
+    pwr_r1:"CM5 idle", pwr_r2:"CM5 + 4G LTE active", pwr_r3:"All modules active", pwr_r4:"With Hailo-8 inference",
+    wpwr_h3:"Thermal Management",
+    wpwr_p2:"A large passive heatsink is included on the CM5 area. A 5V PWM fan connector is available for active cooling in high-ambient or high-load deployments.",
+    wpwr_tip:"For 24/7 operation in enclosures, add a 40mm 5V fan connected to the fan header. Set GPIO12 HIGH to run at full speed or use PWM for temperature-based control.",
+    wgh_title:"GitHub & Contributing", wgh_h1:"Repository", wgh_h2:"How to Contribute",
+    wgh_p1:"1. Fork the repo and create a branch: feat/..., fix/..., docs/...<br>2. Make focused changes with clear commit messages<br>3. Update README or docs if behavior changes<br>4. Open a Pull Request with description, motivation, and testing steps",
+    wgh_h3:"Reporting Issues",
+    wgh_p2:"Use GitHub Issues with: OS version, board revision, module type, full logs, and steps to reproduce. For security issues, email <strong>contact@hbqsolution.com</strong> privately.",
+    wgh_p3:"This project is MIT licensed. You are free to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies. Copyright (c) 2025 HBQ Technology.",
+    cta_label:"Get Yours", cta_title:"Ready to Deploy?",
+    cta_sub:"Order the HBQ CM5 Industrial IoT Gateway with your choice of modules. International shipping available.",
+    cta_btn1:"🛒 Visit HBQ Store", cta_btn2:"⭐ Star on GitHub", cta_btn3:"✉ Contact Sales",
+    contact_phone:"Phone / Zalo (Vietnam)", contact_store:"Official Store",
+    footer_store:"Store", footer_contact:"Contact",
+  },
+
+  vi: {
+    nav_compare:"So Sánh", nav_features:"Tính Năng", nav_specs:"Thông Số",
+    nav_modules:"Module", nav_wiki:"Wiki", nav_buy:"Mua", nav_order:"Mua Ngay",
+    hero_badge:"Cổng IoT Công Nghiệp · Rev 2.1",
+    hero_desc:"Bo mạch carrier công nghiệp dựa trên Raspberry Pi CM5 với 4G LTE tích hợp (Quectel EC25-E), LoRaWAN (LR62E), Zigbee (Silicon Labs MGM210P), RS485 và khe mở rộng M.2. Giải pháp gateway IoT đa giao thức tối ưu cho triển khai công nghiệp.",
+    hero_btn_order:"Mua Ngay", hero_btn_docs:"Tài Liệu",
+    stat_lte:"LTE Cat 4", stat_proto:"Giao Thức IoT", stat_eth:"Ethernet", stat_oss:"Mã Nguồn Mở",
+    vs_label:"So Sánh", vs_title:"HBQ CM5 vs Đối Thủ",
+    vs_sub:"Xem lý do tại sao HBQ Industrial Gateway mang lại nhiều tính năng vượt trội hơn các bo mạch carrier tương đương trên thị trường.",
+    vs_o1t:"4G LTE Cat 4 (Quectel EC25-E)", vs_o1s:"4G tích hợp sẵn, không cần modem ngoài",
+    vs_o2t:"Module LoRaWAN (LR62E)",         vs_o2s:"Khe Mini-PCIe — dễ thay thế hoặc nâng cấp",
+    vs_o3t:"Zigbee MGM210P / MGM12P",        vs_o3s:"Silicon Labs, mạng mesh cấp doanh nghiệp",
+    vs_o4t:"Bus Công Nghiệp RS485",          vs_o4s:"Hỗ trợ Modbus/RTU cho cảm biến công nghiệp",
+    vs_o5t:"M.2 B-Key + M-Key (Tuỳ chọn)", vs_o5s:"Hai khe M.2 cho NVMe hoặc module AI",
+    vs_o6t:"Dual MIPI CSI (Camera)",          vs_o6s:"Sẵn sàng cho AI thị giác",
+    vs_o7t:"Hỗ Trợ AI Hailo-8",              vs_o7s:"Cắm NPU M.2 cho suy luận tại biên",
+    vs_o8t:"Phần Cứng Mã Nguồn Mở (MIT)",    vs_o8s:"Toàn bộ schematic + code trên GitHub",
+    vs_o9t:"Hỗ trợ tại Việt Nam",            vs_o9s:"Hỗ trợ qua Zalo/Điện thoại (+84) 035 719 1643",
+    vs_t1t:"Tuỳ chọn 4G/5G",   vs_t1s:"Qua khe M.2 (module bán riêng)",
+    vs_t2t:"Không có LoRa",     vs_t2s:"Không có khả năng LoRaWAN tích hợp",
+    vs_t3t:"Không có Zigbee",   vs_t3s:"Không hỗ trợ mạng mesh Zigbee",
+    vs_t4t:"Không có RS485",    vs_t4s:"Không có bus công nghiệp",
+    vs_t5t:"Một khe M.2",       vs_t5s:"Khả năng mở rộng hạn chế",
+    vs_t6t:"Dual ETH",          vs_t6s:"Hai cổng Gigabit Ethernet",
+    vs_t7t:"AI chỉ qua M.2",    vs_t7s:"Không có bố trí khe AI chuyên dụng",
+    vs_t8t:"Thiết kế đóng",     vs_t8s:"Hạn chế truy cập schematic công khai",
+    vs_t9t:"Hỗ trợ từ Trung Quốc", vs_t9s:"Không có hỗ trợ địa phương tại Đông Nam Á",
+    feat_label:"Tính Năng",
+    feat_title:"Đầy Đủ Những Gì Bạn Cần,<br>Không Thừa Một Thứ Gì",
+    feat_sub:"HBQ CM5 Gateway tích hợp các giao thức truyền thông IoT quan trọng nhất trên một bo mạch duy nhất cấp độ công nghiệp.",
+    f1_title:"4G LTE Cat 4", f1_desc:"Module Quectel EC25-E được hàn trực tiếp trên bo mạch. Tốc độ tải xuống tới 150 Mbps / tải lên 50 Mbps. Khe SIM tích hợp. Giao tiếp AT command qua USB/UART.",
+    f2_title:"Gateway LoRaWAN", f2_desc:"Module LoRa LR62E qua Mini-PCIe (tương thích Wio-SX1262). Tầm xa, tiêu thụ điện thấp tới 15 km tầm nhìn thẳng. Lý tưởng cho mạng cảm biến và nông nghiệp thông minh.",
+    f3_title:"Mạng Mesh Zigbee", f3_desc:"Module NCP Silicon Labs MGM210P / MGM12P. Hỗ trợ đầy đủ Zigbee 3.0 qua giao thức CPC. Điều khiển hàng trăm thiết bị Zigbee nhà thông minh và công nghiệp.",
+    f4_title:"Bus Công Nghiệp RS485", f4_desc:"Giao tiếp RS485 tích hợp cho giao thức Modbus RTU/ASCII. Kết nối PLC, biến tần, đồng hồ điện và cảm biến công nghiệp trực tiếp — không cần bộ chuyển đổi ngoài.",
+    f5_title:"Sẵn Sàng AI (Hailo-8)", f5_desc:"Khe M.2 hỗ trợ bộ gia tốc AI Hailo-8. Chạy phát hiện đối tượng, nhận diện khuôn mặt và phát hiện bất thường tại biên với hiệu năng 26 TOPS.",
+    f6_title:"Camera Dual MIPI CSI", f6_desc:"Hai giao tiếp MIPI CSI/DSI cho vận hành camera kép đồng thời. Lý tưởng cho thị giác lập thể, giám sát đa góc và ứng dụng AI thị giác.",
+    f7_title:"Ethernet Gigabit", f7_desc:"Cổng Ethernet 1000Base-T (Trxcom TRJG052GHENL) cho kết nối có dây đáng tin cậy. Backbone mạng ổn định cho ứng dụng gateway với thông lượng dữ liệu cao.",
+    f8_title:"I/O Phong Phú", f8_desc:"SPI, UART, I2C, 2× USB, USB Type-C, HDMI, SD Card, đầu nối FAN và jack nguồn DC. Mọi thứ cần thiết để mở rộng ngoại vi và tích hợp hệ thống.",
+    f9_title:"Mã Nguồn Mở (MIT)", f9_desc:"Toàn bộ schematic, ví dụ Python và firmware trên GitHub. Giấy phép MIT — sử dụng miễn phí trong sản phẩm thương mại. Cộng đồng và hỗ trợ từ nhà sản xuất.",
+    spec_label:"Thông Số Kỹ Thuật", spec_title:"Thông Số Đầy Đủ",
+    spec_sub:"Thông số phần cứng đầy đủ của HBQ Industrial Base Board dành cho Raspberry Pi CM5 Rev 2.1.",
+    sg1:"Nền Tảng Lõi", sg2:"Kết Nối Không Dây", sg3:"Giao Tiếp Có Dây",
+    sg4:"Mở Rộng & Lưu Trữ", sg5:"Nguồn & Cơ Khí", sg6:"Phần Mềm & Giấy Phép",
+    s1k:"Module Xử Lý", s1v:"(bán riêng)", s2k:"Phiên Bản Bo Mạch",
+    s3k:"Chuẩn Zigbee", s4v:"Nano SIM (khay đẩy)", s5v:"1× RS485 (2 dây công nghiệp)",
+    s6v:"Tuỳ chọn (NVMe / bộ gia tốc AI)", s7v:"1× cho module LoRaWAN",
+    s8k:"Đầu Vào Nguồn", s9k:"Đèn Chỉ Thị", s9v:"LED trạng thái hệ thống",
+    s10k:"Reset Zigbee", s10v:"Nút reset phần cứng riêng",
+    s11k:"Cổng Nạp Zigbee", s12k:"Schematic", s12v:"PDF công khai trên GitHub",
+    s13k:"Ví Dụ Code", s14k:"Chứng Nhận", s15k:"Hỗ Trợ",
+    mod_label:"Module Phần Cứng", mod_title:"Thiết Kế Mô-đun Linh Hoạt",
+    mod_sub:"Mỗi module truyền thông được xây dựng chuyên biệt cho giao thức của nó. Thay thế, nâng cấp hoặc kết hợp để phù hợp với nhu cầu triển khai thực tế của bạn.",
+    m1_name:"Module 4G LTE", m1_desc:"LTE Cat 4 với 150/50 Mbps. Chứng nhận FCC/CE/UKCA. Hỗ trợ băng tần LTE toàn cầu. Điều khiển qua AT command trên USB/UART.",
+    m2_name:"Module LoRaWAN", m2_desc:"Dạng Mini-PCIe. Tầm xa tới 15 km tầm nhìn thẳng. Gateway cảm biến tiêu thụ điện thấp. Giao tiếp SPI qua SPI1 overlay.",
+    m3_name:"Module Zigbee", m3_desc:"Gắn mặt dưới bo mạch. Zigbee 3.0 NCP qua CPC. Xây dựng coordinator mesh đầy đủ với daemon cpcd. Cổng reset + nạp firmware riêng.",
+    m4_name:"Bộ Gia Tốc AI Hailo-8", m4_desc:"NPU AI dạng M.2 cắm là dùng. Cho phép phát hiện đối tượng, nhận diện khuôn mặt và phát hiện bất thường tại biên mà không phụ thuộc cloud.",
+    diag_label:"Kiến Trúc Hệ Thống", diag_title:"Sơ Đồ Khối",
+    diag_sub:"Module CM5 nằm ở trung tâm của gateway, quản lý tất cả các module truyền thông và ngoại vi I/O.",
+    qs_label:"Bắt Đầu", qs_title:"Hoạt Động Trong Vài Phút",
+    qs_sub:"Từ khi mở hộp đến kết nối 4G, LoRa và Zigbee — làm theo các bước sau.",
+    qs1_title:"Nạp OS & Khởi Động",  qs1_desc:"Nạp Raspberry Pi OS (64-bit) vào eMMC hoặc thẻ SD của CM5 bằng rpiboot + Imager.",
+    qs2_title:"Bật Overlay",          qs2_desc:"Bật SPI1 cho LoRa và cấu hình GPIO cho điều khiển nguồn 4G trong /boot/config.txt.",
+    qs3_title:"Bật Nguồn 4G",         qs3_desc:"Chạy script khởi động EC25 và bật giao tiếp wwan0 để kết nối dữ liệu di động.",
+    qs4_title:"Triển Khai Gateway",   qs4_desc:"Khởi động cpcd cho Zigbee, chạy ví dụ LoRa Python và cấu hình điểm cuối cloud.",
+    wiki_label:"Tài Liệu", wiki_title:"Wiki & Tham Khảo",
+    wiki_sub:"Tài liệu toàn diện cho tất cả module, giao tiếp và tùy chọn cấu hình.",
+    wiki_contents:"Mục Lục", wl_overview:"Tổng Quan", wl_power:"Nguồn & Nhiệt",
+    wo_title:"Tổng Quan", wo_p1:"HBQ CM5 Industrial IoT Gateway là bo mạch carrier được thiết kế cho Raspberry Pi Compute Module 5 (CM5). Cung cấp đầy đủ các giao tiếp truyền thông công nghiệp — 4G LTE, LoRaWAN, Zigbee, RS485 — trên một bo mạch nhỏ gọn, phù hợp cho triển khai IoT công nghiệp, tự động hóa tòa nhà, nông nghiệp và AI tại biên.",
+    wo_h1:"Tính Năng Chính",
+    wo_feat:"• <strong>Quectel EC25-E</strong>: Modem LTE Cat 4 tích hợp, khe SIM nano<br>• <strong>LR62E LoRa</strong>: Module LoRaWAN Mini-PCIe (tương thích SX1262)<br>• <strong>MGM210P / MGM12P Zigbee</strong>: Silicon Labs NCP CPC mặt dưới<br>• <strong>RS485</strong>: Serial công nghiệp cho Modbus RTU/ASCII<br>• <strong>M.2 B-Key</strong>: Mở rộng NVMe hoặc bộ gia tốc AI (M-Key tùy chọn)<br>• <strong>Dual MIPI CSI/DSI</strong>: Hai giao tiếp camera/màn hình<br>• <strong>1000M Ethernet</strong>: Bộ điều khiển GbE Trxcom TRJG052GHENL",
+    wo_oss:"Toàn bộ schematic và ví dụ Python/C có sẵn tại ", wo_h2:"Cấu Trúc Repository",
+    w4g_p1:"Quectel EC25-E được hàn trực tiếp trên bo HBQ và kết nối với CM5 qua USB. Khay SIM nano có thể truy cập từ mặt trên bo mạch.",
+    w4g_h1:"Bật Nguồn / Reset", w4g_h2:"Thiết Lập Phiên Dữ Liệu 4G",
+    w4g_note:"EC25-E cần một xung bật nguồn ngắn qua GPIO trước khi thiết bị USB xuất hiện. Luôn chạy turn_on_EC25.py trước sau khi khởi động.",
+    wlora_p1:"Module LoRa LR62E cắm vào khe Mini-PCIe tích hợp và giao tiếp với CM5 qua SPI1. Sử dụng như LoRa node hoặc như một phần của cài đặt gateway LoRaWAN.",
+    wlora_h1:"Bật SPI1 Overlay", wlora_h2:"Ví Dụ Gửi Python",
+    wlora_note:"LR62E hỗ trợ tới 15 km tầm nhìn thẳng với anten phù hợp. Dùng 868 MHz (EU) hoặc 915 MHz (US/AS) tùy theo kế hoạch tần số vùng của bạn.",
+    wzb_p1:"Module Zigbee (MGM210PA22JIA2R hoặc MGM12P22F1024GA) được gắn ở mặt dưới bo mạch. Chạy như Network Co-Processor (NCP) và giao tiếp với CM5 qua giao thức CPC.",
+    wzb_h1:"Build & Nạp cpcd",
+    wzb_note:"Tham khảo MGM12P22F1024GA-V4R/README.md để biết log build NCP đầy đủ và tài liệu Gecko SDK 4.4.6.",
+    wrs_p1:"Giao tiếp RS485 tích hợp cho phép kết nối trực tiếp với thiết bị công nghiệp như PLC, biến tần, đồng hồ điện, cảm biến lưu lượng và bất kỳ thiết bị tương thích Modbus RTU/ASCII nào.",
+    wrs_h1:"Ví Dụ Python Modbus",
+    wrs_note:"Lý tưởng cho giám sát năng lượng công nghiệp, hệ thống BMS, tập hợp cảm biến Modbus và tích hợp PLC mà không cần bộ chuyển đổi USB-RS485 ngoài.",
+    wai_p1:"HBQ CM5 Gateway hỗ trợ module bộ gia tốc AI Hailo-8 qua khe M.2. Cho phép suy luận AI thời gian thực tại biên mà không phụ thuộc cloud — lý tưởng cho thị giác máy tính, bảo trì dự đoán và giám sát thông minh.",
+    wai_h1:"Cài HailoRT", wai_h2:"Ứng Dụng AI",
+    wai_cases:"• <strong>Phát Hiện Đối Tượng</strong>: YOLOv5/v8 tại 30+ FPS<br>• <strong>Nhận Diện Khuôn Mặt</strong>: Kiểm soát truy cập sinh trắc học thời gian thực<br>• <strong>Phát Hiện Bất Thường</strong>: Bảo trì dự đoán công nghiệp<br>• <strong>Đếm Thông Minh</strong>: Đếm người / phương tiện / đối tượng",
+    wai_note:"Module Hailo-8 M.2 bán riêng. Đảm bảo khe M-Key được trang bị trên biến thể bo mạch của bạn.",
+    wgpio_sub:"Phân công GPIO chính cho carrier CM5",
+    gpio_sig:"Tín Hiệu", gpio_dir:"Chiều", gpio_desc:"Mô Tả",
+    gpio_r1:"Xung LOW để bật nguồn EC25-E", gpio_r2:"Reset tích cực LOW cho EC25",
+    gpio_r3:"Reset phần cứng cho Zigbee NCP", gpio_r7:"Chip select LoRa",
+    gpio_r8:"Điều khiển hướng RS485", gpio_r9:"Điều khiển tốc độ quạt 5V",
+    gpio_r10:"Đầu ra nguồn 3.3V", gpio_r11:"Đầu ra nguồn 5V",
+    wgpio_note:"Số GPIO chính xác có thể thay đổi theo phiên bản bo mạch. Luôn kiểm tra với schematic công khai: Schematic/Gateway_CM5_Schematic_public.pdf",
+    wpwr_title:"Nguồn & Nhiệt", wpwr_sub:"Đầu vào nguồn, tiêu thụ và làm mát",
+    wpwr_h1:"Đầu Vào Nguồn", wpwr_p1:"Bo mạch được cấp nguồn qua jack DC barrel. Đầu vào khuyến nghị: <strong>12V DC</strong> với ít nhất 3A khi tất cả module hoạt động (4G + LoRa + Zigbee + CM5).",
+    wpwr_h2:"Ước Tính Tiêu Thụ Điện",
+    pwr_config:"Cấu Hình", pwr_current:"Dòng Ước Tính @ 12V",
+    pwr_r1:"CM5 nhàn rỗi", pwr_r2:"CM5 + 4G LTE hoạt động", pwr_r3:"Tất cả module hoạt động", pwr_r4:"Với suy luận Hailo-8",
+    wpwr_h3:"Quản Lý Nhiệt",
+    wpwr_p2:"Tản nhiệt thụ động lớn được tích hợp ở khu vực CM5. Đầu nối quạt PWM 5V có sẵn để làm mát tích cực trong môi trường nhiệt độ cao hoặc tải nặng.",
+    wpwr_tip:"Để vận hành 24/7 trong vỏ hộp kín, thêm quạt 5V 40mm kết nối vào đầu nối quạt. Đặt GPIO12 HIGH để chạy tốc độ tối đa hoặc dùng PWM để kiểm soát theo nhiệt độ.",
+    wgh_title:"GitHub & Đóng Góp", wgh_h1:"Repository", wgh_h2:"Cách Đóng Góp",
+    wgh_p1:"1. Fork repo và tạo branch: feat/..., fix/..., docs/...<br>2. Thực hiện thay đổi tập trung với commit message rõ ràng<br>3. Cập nhật README hoặc docs nếu hành vi thay đổi<br>4. Mở Pull Request với mô tả, lý do và bước kiểm tra",
+    wgh_h3:"Báo Cáo Lỗi",
+    wgh_p2:"Dùng GitHub Issues kèm: phiên bản OS, phiên bản bo mạch, loại module, log đầy đủ và các bước tái hiện. Với lỗi bảo mật, email riêng tư <strong>contact@hbqsolution.com</strong>.",
+    wgh_p3:"Dự án này được cấp phép MIT. Bạn được tự do sử dụng, sao chép, sửa đổi, hợp nhất, phát hành, phân phối, cấp phép lại và/hoặc bán các bản sao. Copyright (c) 2025 HBQ Technology.",
+    cta_label:"Đặt Hàng", cta_title:"Sẵn Sàng Triển Khai?",
+    cta_sub:"Đặt hàng HBQ CM5 Industrial IoT Gateway với lựa chọn module theo nhu cầu. Giao hàng trong và ngoài nước.",
+    cta_btn1:"🛒 Cửa Hàng HBQ", cta_btn2:"⭐ Star trên GitHub", cta_btn3:"✉ Liên Hệ Mua Hàng",
+    contact_phone:"Điện Thoại / Zalo", contact_store:"Cửa Hàng Chính Thức",
+    footer_store:"Cửa Hàng", footer_contact:"Liên Hệ",
+  }
+};
+
+// ── Core i18n engine ────────────────────────────────────────────────────────
+let currentLang = localStorage.getItem('hbq_lang') || 'en';
+
+function applyLang(lang) {
+  const t = TRANSLATIONS[lang];
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (t[key] !== undefined) el.innerHTML = t[key];
+  });
+  document.documentElement.lang = lang;
+  document.getElementById('btn-en').classList.toggle('active', lang === 'en');
+  document.getElementById('btn-vi').classList.toggle('active', lang === 'vi');
+}
+
+function setLang(lang) {
+  currentLang = lang;
+  localStorage.setItem('hbq_lang', lang);
+  applyLang(lang);
+}
+
+// ── Wiki tab switching ──────────────────────────────────────────────────────
 function showWiki(id) {
   document.querySelectorAll('.wiki-page').forEach(p => p.classList.remove('active'));
   document.querySelectorAll('.wiki-link').forEach(l => l.classList.remove('active'));
   document.getElementById('wiki-' + id).classList.add('active');
   event.currentTarget.classList.add('active');
 }
+
+// Init
+applyLang(currentLang);
 </script>
 </body>
 </html>
