@@ -326,7 +326,7 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:32px 40p
 <section id="features">
   <div class="section-inner">
     <div class="section-label" data-i18n="feat_label">Capabilities</div>
-    <h2 class="section-title" data-i18n="feat_title">Everything You Need,<br>Nothing You Don't</h2>
+    <h2 class="section-title" data-i18n="feat_title">Everything You Need</h2>
     <p class="section-sub" data-i18n="feat_sub">The HBQ CM5 Gateway integrates the most critical IoT communication protocols on a single industrial-grade carrier board.</p>
     <div class="features-grid">
       <div class="feat-card"><div class="feat-icon">📡</div><div class="feat-title" data-i18n="f1_title">4G LTE Cat 4</div><p class="feat-desc" data-i18n="f1_desc">Quectel EC25-E module soldered directly on board. Supports download speeds up to 150 Mbps / upload 50 Mbps. SIM card slot included. AT command interface via USB/UART.</p><span class="feat-tag">EC25-E · Cat 4 · 150Mbps</span></div>
@@ -440,10 +440,10 @@ footer{background:var(--bg2);border-top:1px solid var(--border);padding:32px 40p
 <section class="diagram-section" id="diagram">
   <div class="section-inner">
     <div class="section-label" data-i18n="diag_label">System Architecture</div>
-    <h2 class="section-title" data-i18n="diag_title">Block Diagram</h2>
+    <h2 class="section-title" data-i18n="diag_title">Board Function Block</h2>
     <p class="section-sub" data-i18n="diag_sub">The CM5 module sits at the heart of the gateway, managing all communication modules and I/O peripherals.</p>
     <div class="diagram-wrap">
-      <img src="assets/images/Diagram_CM5.png" alt="CM5 Gateway Block Diagram" class="diagram-img">
+      <img src="assets/images/Diagram_CM5.png" alt="CM5 Gateway Function Block" class="diagram-img">
     </div>
   </div>
 </section>
@@ -849,7 +849,7 @@ const TRANSLATIONS = {
     vs_t8t:"Thiết kế đóng",     vs_t8s:"Hạn chế truy cập schematic công khai",
     vs_t9t:"Hỗ trợ từ Trung Quốc", vs_t9s:"Không có hỗ trợ địa phương tại Đông Nam Á",
     feat_label:"Tính Năng",
-    feat_title:"Đầy Đủ Những Gì Bạn Cần,<br>Không Thừa Một Thứ Gì",
+    feat_title:"Đầy Đủ Những Gì Bạn Cần",
     feat_sub:"HBQ CM5 Gateway tích hợp các giao thức truyền thông IoT quan trọng nhất trên một bo mạch duy nhất cấp độ công nghiệp.",
     f1_title:"4G LTE Cat 4", f1_desc:"Module Quectel EC25-E được hàn trực tiếp trên bo mạch. Tốc độ tải xuống tới 150 Mbps / tải lên 50 Mbps. Khe SIM tích hợp. Giao tiếp AT command qua USB/UART.",
     f2_title:"Hai Tùy Chọn LoRa", f2_desc:"<strong>Tùy chọn 1 — LoRaWAN Gateway:</strong> Khe Mini-PCIe hỗ trợ module concentrator LoRaWAN đầy đủ (RAK5146, WM1302...). <strong>Tùy chọn 2 — LoRa Node (Tùy chọn):</strong> LR62E (Wio-SX1262) onboard giao tiếp SPI1, tầm xa tới 15 km.",
