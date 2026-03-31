@@ -964,4 +964,16 @@ function setLang(lang) {
   applyLang(lang);
 }
 
-// ── Wiki tab switching ─────────────────────
+// ── Wiki tab switching ──────────────────────────────────────────────────────
+function showWiki(id) {
+  document.querySelectorAll('.wiki-page').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.wiki-link').forEach(l => l.classList.remove('active'));
+  document.getElementById('wiki-' + id).classList.add('active');
+  event.currentTarget.classList.add('active');
+}
+
+// ── Init on load ────────────────────────────────────────────────────────────
+applyLang(currentLang);
+</script>
+</body>
+</html>
