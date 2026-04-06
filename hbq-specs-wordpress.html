@@ -1,0 +1,371 @@
+<!-- ============================================================
+     HBQ CM5 Gateway — Full Specifications Block
+     WordPress HTML Editor ready — fully self-contained
+     All CSS prefixed with .hbq-sp- to avoid theme conflicts
+     ============================================================ -->
+
+<style>
+/* ── Reset & Container ── */
+.hbq-sp-wrap *{box-sizing:border-box;margin:0;padding:0;}
+.hbq-sp-wrap{
+  font-family:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,sans-serif;
+  background:#f5f7fa;
+  border:1px solid #d0d8e8;
+  border-radius:8px;
+  overflow:hidden;
+  max-width:1100px;
+  margin:0 auto;
+}
+
+/* ── Header ── */
+.hbq-sp-header{
+  background:#ffffff;
+  border-bottom:1px solid #d0d8e8;
+  padding:28px 32px 20px;
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:16px;
+}
+.hbq-sp-header-left{}
+.hbq-sp-label{
+  font-size:10px;
+  font-weight:700;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:#0066cc;
+  margin-bottom:6px;
+}
+.hbq-sp-title{
+  font-size:26px;
+  font-weight:700;
+  color:#0f1c2e;
+  letter-spacing:-0.3px;
+  line-height:1.15;
+}
+.hbq-sp-sub{
+  font-size:13px;
+  color:#4a637d;
+  margin-top:6px;
+}
+
+/* ── Language switcher ── */
+.hbq-sp-lang{
+  display:flex;
+  border:1px solid #d0d8e8;
+  border-radius:4px;
+  overflow:hidden;
+  flex-shrink:0;
+  align-self:flex-start;
+}
+.hbq-sp-lang-btn{
+  background:#ffffff;
+  border:none;
+  padding:7px 16px;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  cursor:pointer;
+  color:#4a637d;
+  transition:background .15s,color .15s;
+  display:flex;
+  align-items:center;
+  gap:5px;
+  line-height:1;
+}
+.hbq-sp-lang-btn:first-child{border-right:1px solid #d0d8e8;}
+.hbq-sp-lang-btn.hbq-active{background:#0066cc;color:#ffffff;}
+.hbq-sp-lang-btn:hover:not(.hbq-active){background:#eef3fb;color:#0066cc;}
+
+/* ── Grid ── */
+.hbq-sp-grid{
+  display:grid;
+  grid-template-columns:repeat(2,1fr);
+  gap:1px;
+  background:#d0d8e8;
+  border-top:1px solid #d0d8e8;
+}
+@media(max-width:680px){
+  .hbq-sp-grid{grid-template-columns:1fr;}
+  .hbq-sp-header{padding:20px;}
+  .hbq-sp-title{font-size:20px;}
+}
+
+/* ── Each group card ── */
+.hbq-sp-group{
+  background:#ffffff;
+  padding:0;
+}
+.hbq-sp-group-title{
+  display:flex;
+  align-items:center;
+  gap:10px;
+  padding:14px 20px;
+  background:#f0f4fa;
+  border-bottom:1px solid #d0d8e8;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:1.5px;
+  text-transform:uppercase;
+  color:#0066cc;
+}
+.hbq-sp-group-title::before{
+  content:'';
+  width:3px;
+  height:16px;
+  background:#0066cc;
+  border-radius:2px;
+  flex-shrink:0;
+}
+.hbq-sp-group-icon{font-size:14px;}
+
+/* ── Each row ── */
+.hbq-sp-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:10px 20px;
+  border-bottom:1px solid #eef1f6;
+  gap:12px;
+  transition:background .12s;
+}
+.hbq-sp-row:last-child{border-bottom:none;}
+.hbq-sp-row:hover{background:#f8fafd;}
+.hbq-sp-key{
+  font-size:12px;
+  color:#4a637d;
+  flex-shrink:0;
+  min-width:130px;
+  font-weight:500;
+}
+.hbq-sp-val{
+  font-size:12px;
+  color:#0f1c2e;
+  text-align:right;
+  font-weight:600;
+  line-height:1.4;
+}
+.hbq-sp-hl{
+  color:#00a86b;
+  font-weight:700;
+}
+.hbq-sp-tag{
+  display:inline-block;
+  background:#eef3fb;
+  border:1px solid #c5d5ea;
+  color:#0066cc;
+  font-size:10px;
+  font-weight:700;
+  padding:2px 7px;
+  border-radius:3px;
+  letter-spacing:0.3px;
+}
+
+/* ── Footer bar ── */
+.hbq-sp-footer{
+  background:#f0f4fa;
+  border-top:1px solid #d0d8e8;
+  padding:12px 24px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  flex-wrap:wrap;
+  gap:10px;
+}
+.hbq-sp-footer-note{font-size:11px;color:#8fa3bb;}
+.hbq-sp-footer-link{
+  font-size:11px;font-weight:600;color:#0066cc;
+  text-decoration:none;
+}
+.hbq-sp-footer-link:hover{text-decoration:underline;}
+</style>
+
+<div class="hbq-sp-wrap">
+
+  <!-- Header -->
+  <div class="hbq-sp-header">
+    <div class="hbq-sp-header-left">
+      <div class="hbq-sp-label" id="hbq-sp-lbl">Technical Specifications</div>
+      <div class="hbq-sp-title" id="hbq-sp-ttl">Full Specifications</div>
+      <div class="hbq-sp-sub" id="hbq-sp-sub">Complete hardware specifications for HBQ Industrial Base Board for Raspberry Pi CM5 Rev 2.1.</div>
+    </div>
+    <div class="hbq-sp-lang">
+      <button class="hbq-sp-lang-btn hbq-active" onclick="hbqSpLang('en')" id="hbq-btn-en">🇬🇧 EN</button>
+      <button class="hbq-sp-lang-btn" onclick="hbqSpLang('vi')" id="hbq-btn-vi">🇻🇳 VI</button>
+    </div>
+  </div>
+
+  <!-- Grid -->
+  <div class="hbq-sp-grid">
+
+    <!-- 1. Core Platform -->
+    <div class="hbq-sp-group">
+      <div class="hbq-sp-group-title"><span class="hbq-sp-group-icon">🖥️</span><span data-hbq="sg1">Core Platform</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s1k">Processor Module</span><span class="hbq-sp-val">Raspberry Pi CM5 <span class="hbq-sp-tag" data-hbq="s1v">sold separately</span></span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">CPU</span><span class="hbq-sp-val">Cortex-A76 Quad-core 2.4 GHz</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">RAM</span><span class="hbq-sp-val">2 / 4 / 8 GB LPDDR4X</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">eMMC</span><span class="hbq-sp-val">0 / 16 / 32 / 64 GB</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s2k">Board Revision</span><span class="hbq-sp-val"><span class="hbq-sp-hl">Rev 2.1</span></span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">OS</span><span class="hbq-sp-val">Raspberry Pi OS 64-bit</span></div>
+    </div>
+
+    <!-- 2. Wireless -->
+    <div class="hbq-sp-group">
+      <div class="hbq-sp-group-title"><span class="hbq-sp-group-icon">📡</span><span data-hbq="sg2">Wireless Connectivity</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">4G LTE</span><span class="hbq-sp-val"><span class="hbq-sp-hl">Quectel EC25-E Cat 4</span></span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">LTE DL / UL</span><span class="hbq-sp-val">150 Mbps / 50 Mbps</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s_lora_gw">LoRaWAN (Mini-PCIe)</span><span class="hbq-sp-val"><span class="hbq-sp-hl" data-hbq="sv_lora_gw">1× Mini-PCIe (RAK5146, WM1302…)</span></span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s_lora_nd">LoRa Node (Optional)</span><span class="hbq-sp-val" data-hbq="sv_lora_nd">LR62E / Wio-SX1262 onboard, SPI1</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">Zigbee</span><span class="hbq-sp-val">MGM210PA22JIA2R / MGM12P</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s3k">Zigbee Standard</span><span class="hbq-sp-val">Zigbee 3.0 / IEEE 802.15.4</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">SIM</span><span class="hbq-sp-val" data-hbq="s4v">Nano SIM (push-pull tray)</span></div>
+    </div>
+
+    <!-- 3. Wired Interfaces -->
+    <div class="hbq-sp-group">
+      <div class="hbq-sp-group-title"><span class="hbq-sp-group-icon">🔌</span><span data-hbq="sg3">Wired Interfaces</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">Ethernet</span><span class="hbq-sp-val"><span class="hbq-sp-hl">1× Gigabit (1000Base-T)</span></span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">USB</span><span class="hbq-sp-val">2× USB-A + 1× USB-C</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">HDMI</span><span class="hbq-sp-val">1× Micro HDMI</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">RS485</span><span class="hbq-sp-val"><span class="hbq-sp-hl" data-hbq="s5v">1× RS485 (industrial 2-wire)</span></span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">SPI</span><span class="hbq-sp-val" data-hbq="sv_spi">SPI1 via DT overlay</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">UART / I2C</span><span class="hbq-sp-val">1× UART, 1× I2C header</span></div>
+    </div>
+
+    <!-- 4. Expansion & Storage -->
+    <div class="hbq-sp-group">
+      <div class="hbq-sp-group-title"><span class="hbq-sp-group-icon">💾</span><span data-hbq="sg4">Expansion &amp; Storage</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">M.2 B-Key</span><span class="hbq-sp-val"><span class="hbq-sp-hl">M.2 2230 / 2242 / 2280</span></span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">M.2 M-Key</span><span class="hbq-sp-val" data-hbq="s6v">Optional — NVMe / AI accelerator</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">Mini-PCIe</span><span class="hbq-sp-val" data-hbq="s7v">1× LoRaWAN gateway module slot</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">SD Card</span><span class="hbq-sp-val">MicroSD UHS-I</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="sk_cam">Camera / Display</span><span class="hbq-sp-val"><span class="hbq-sp-hl">2× MIPI CSI / DSI</span></span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key">AI Module</span><span class="hbq-sp-val" data-hbq="sv_ai">Hailo-8 via M.2 — 26 TOPS</span></div>
+    </div>
+
+    <!-- 5. Power & Mechanical -->
+    <div class="hbq-sp-group">
+      <div class="hbq-sp-group-title"><span class="hbq-sp-group-icon">⚡</span><span data-hbq="sg5">Power &amp; Mechanical</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s8k">Power Input</span><span class="hbq-sp-val" data-hbq="sv_pwr">DC Jack — 12V recommended</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="sk_fan">FAN Connector</span><span class="hbq-sp-val" data-hbq="sv_fan">5V PWM fan header</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s9k">Indicators</span><span class="hbq-sp-val" data-hbq="s9v">System status LEDs</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s10k">Zigbee Reset</span><span class="hbq-sp-val" data-hbq="s10v">Dedicated hardware reset button</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s11k">Zigbee Prog Port</span><span class="hbq-sp-val" data-hbq="sv_prog">Programming header (JTAG / SWD)</span></div>
+    </div>
+
+    <!-- 6. Software & License -->
+    <div class="hbq-sp-group">
+      <div class="hbq-sp-group-title"><span class="hbq-sp-group-icon">📂</span><span data-hbq="sg6">Software &amp; License</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="sk_lic">License</span><span class="hbq-sp-val"><span class="hbq-sp-hl">MIT Open Source</span></span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s12k">Schematic</span><span class="hbq-sp-val" data-hbq="s12v">Public PDF on GitHub</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s13k">Code Examples</span><span class="hbq-sp-val" data-hbq="sv_ex">Python (4G, LoRa), C (Zigbee CPC)</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s14k">Certifications</span><span class="hbq-sp-val">EC25-E: FCC / CE / UKCA</span></div>
+      <div class="hbq-sp-row"><span class="hbq-sp-key" data-hbq="s15k">Support</span><span class="hbq-sp-val" data-hbq="sv_sup">GitHub + Email + Zalo</span></div>
+    </div>
+
+  </div><!-- /grid -->
+
+  <!-- Footer -->
+  <div class="hbq-sp-footer">
+    <span class="hbq-sp-footer-note" id="hbq-sp-fn">★ Highlighted values indicate key differentiators</span>
+    <a class="hbq-sp-footer-link" href="https://github.com/hbqtechnologycompany/HBQ_Industrial_Base_Board_For_Pi_CM5" target="_blank" rel="noopener">View Schematic on GitHub ↗</a>
+  </div>
+
+</div><!-- /hbq-sp-wrap -->
+
+<script>
+(function(){
+  // ── Translations ────────────────────────────────────────────────
+  var T = {
+    en:{
+      label:"Technical Specifications",
+      title:"Full Specifications",
+      sub:"Complete hardware specifications for HBQ Industrial Base Board for Raspberry Pi CM5 Rev 2.1.",
+      fn:"★ Highlighted values indicate key differentiators",
+      sg1:"Core Platform",       sg2:"Wireless Connectivity",
+      sg3:"Wired Interfaces",    sg4:"Expansion & Storage",
+      sg5:"Power & Mechanical",  sg6:"Software & License",
+      s1k:"Processor Module",    s1v:"sold separately",
+      s2k:"Board Revision",      s3k:"Zigbee Standard",
+      s4v:"Nano SIM (push-pull tray)",
+      s_lora_gw:"LoRaWAN (Mini-PCIe)",  sv_lora_gw:"1× Mini-PCIe (RAK5146, WM1302…)",
+      s_lora_nd:"LoRa Node (Optional)", sv_lora_nd:"LR62E / Wio-SX1262 onboard, SPI1",
+      s5v:"1× RS485 (industrial 2-wire)",
+      sv_spi:"SPI1 via DT overlay",
+      s6v:"Optional — NVMe / AI accelerator",
+      s7v:"1× LoRaWAN gateway module slot",
+      sk_cam:"Camera / Display",  sv_ai:"Hailo-8 via M.2 — 26 TOPS",
+      s8k:"Power Input",          sv_pwr:"DC Jack — 12V recommended",
+      sk_fan:"FAN Connector",     sv_fan:"5V PWM fan header",
+      s9k:"Indicators",           s9v:"System status LEDs",
+      s10k:"Zigbee Reset",        s10v:"Dedicated hardware reset button",
+      s11k:"Zigbee Prog Port",    sv_prog:"Programming header (JTAG / SWD)",
+      sk_lic:"License",
+      s12k:"Schematic",           s12v:"Public PDF on GitHub",
+      s13k:"Code Examples",       sv_ex:"Python (4G, LoRa), C (Zigbee CPC)",
+      s14k:"Certifications",
+      s15k:"Support",             sv_sup:"GitHub + Email + Zalo",
+    },
+    vi:{
+      label:"Thông Số Kỹ Thuật",
+      title:"Thông Số Đầy Đủ",
+      sub:"Thông số phần cứng đầy đủ của HBQ Industrial Base Board dành cho Raspberry Pi CM5 Rev 2.1.",
+      fn:"★ Giá trị được tô màu là điểm khác biệt nổi bật",
+      sg1:"Nền Tảng Lõi",         sg2:"Kết Nối Không Dây",
+      sg3:"Giao Tiếp Có Dây",     sg4:"Mở Rộng & Lưu Trữ",
+      sg5:"Nguồn & Cơ Khí",       sg6:"Phần Mềm & Giấy Phép",
+      s1k:"Module Xử Lý",         s1v:"bán riêng",
+      s2k:"Phiên Bản Bo Mạch",    s3k:"Chuẩn Zigbee",
+      s4v:"Nano SIM (khay đẩy)",
+      s_lora_gw:"LoRaWAN (Mini-PCIe)",  sv_lora_gw:"1× Mini-PCIe (RAK5146, WM1302…)",
+      s_lora_nd:"LoRa Node (Tùy chọn)", sv_lora_nd:"LR62E / Wio-SX1262 onboard, SPI1",
+      s5v:"1× RS485 (công nghiệp 2 dây)",
+      sv_spi:"SPI1 qua DT overlay",
+      s6v:"Tùy chọn — NVMe / Bộ gia tốc AI",
+      s7v:"1× khe module LoRaWAN gateway",
+      sk_cam:"Camera / Màn Hình",  sv_ai:"Hailo-8 qua M.2 — 26 TOPS",
+      s8k:"Đầu Vào Nguồn",         sv_pwr:"Jack DC — khuyến nghị 12V",
+      sk_fan:"Đầu Nối Quạt",       sv_fan:"Header quạt 5V PWM",
+      s9k:"Đèn Chỉ Thị",           s9v:"LED trạng thái hệ thống",
+      s10k:"Reset Zigbee",          s10v:"Nút reset phần cứng riêng",
+      s11k:"Cổng Nạp Zigbee",       sv_prog:"Header nạp firmware (JTAG / SWD)",
+      sk_lic:"Giấy Phép",
+      s12k:"Schematic",             s12v:"PDF công khai trên GitHub",
+      s13k:"Ví Dụ Code",            sv_ex:"Python (4G, LoRa), C (Zigbee CPC)",
+      s14k:"Chứng Nhận",
+      s15k:"Hỗ Trợ",               sv_sup:"GitHub + Email + Zalo",
+    }
+  };
+
+  // ── Apply language ───────────────────────────────────────────────
+  var cur = (localStorage.getItem('hbq_lang') || 'en');
+
+  function apply(lang){
+    var t = T[lang];
+    // Header texts
+    document.getElementById('hbq-sp-lbl').textContent = t.label;
+    document.getElementById('hbq-sp-ttl').textContent = t.title;
+    document.getElementById('hbq-sp-sub').textContent = t.sub;
+    document.getElementById('hbq-sp-fn').textContent  = t.fn;
+    // All data-hbq elements
+    var els = document.querySelectorAll('.hbq-sp-wrap [data-hbq]');
+    for(var i=0;i<els.length;i++){
+      var k = els[i].getAttribute('data-hbq');
+      if(t[k] !== undefined) els[i].textContent = t[k];
+    }
+    // Buttons
+    document.getElementById('hbq-btn-en').classList.toggle('hbq-active', lang==='en');
+    document.getElementById('hbq-btn-vi').classList.toggle('hbq-active', lang==='vi');
+    cur = lang;
+    localStorage.setItem('hbq_lang', lang);
+  }
+
+  // expose to onclick
+  window.hbqSpLang = function(lang){ apply(lang); };
+
+  // init
+  apply(cur);
+})();
+</script>
+<!-- ============================================================ end HBQ Specs Block ============================================================ -->
